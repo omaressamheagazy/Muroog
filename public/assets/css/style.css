@@ -38,6 +38,10 @@ button {
     height: calc(100% - var(--topNavbarHeight));
     top: var(--topNavbarHeight);
   }
+  .addBuilding {
+    width: 68%;
+    margin-left: 280px;
+  }
 }
 
 

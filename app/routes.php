@@ -16,7 +16,9 @@ class Routes {
         ['POST', '/product/add', 'ProductController#add'],
         ['POST', '/product/update', 'ProductController#update'],
 
-        /*      Admin     */
+        /*  =============    
+                Admin     
+            ============= */
 
         // Get routes
         ['GET', '/admin', 'AdminController#index'],
@@ -24,7 +26,9 @@ class Routes {
         // Post Routes
         ['POST', '/admin/login', 'AdminController#login'],
         
-        /*      Location     */
+        /* =============    
+                Location  
+           ============= */
 
         // Get Routes
         ['GET', '/admin/location', 'LocationController#index'],
@@ -36,7 +40,9 @@ class Routes {
         ['POST', '/admin/location/delete', 'LocationController#delete'],
         ['POST', '/admin/location/update', 'LocationController#update'],
 
-        /*      Category     */
+        /*  =============    
+                Category  
+            ===========  */
 
         // Get Routes
         ['GET', '/admin/category', 'CategoryController#index'],
@@ -46,7 +52,12 @@ class Routes {
         // Post Routes
         ['POST', '/admin/category/add', 'CategoryController#add'],
         ['POST', '/admin/category/delete', 'CategoryController#delete'],
-        ['POST', '/admin/category/update', 'CategoryController#update']
+        ['POST', '/admin/category/update', 'CategoryController#update'],
+
+        /*  =============    
+            Building  
+         ===========  */
+        ['GET', '/admin/building', 'BuildingController#index']
 
 
 
@@ -54,6 +65,7 @@ class Routes {
 
 
     ];
+        
 
     public static function registeredRoutes(): array {
         return static::$routes;
