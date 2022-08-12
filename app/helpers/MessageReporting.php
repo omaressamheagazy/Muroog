@@ -10,10 +10,10 @@ class MessageReporting {
      * @param  string $message  mesage to be displayd to the user --> ex: password is wrong
      * @param string $messageType type of message -> ex: warrning
      */
-    public static function alert(string $message = "", string $class ): void {
+    public static function alert(string $message = "", MessageType $class ): void {
         if(!empty($message)) {
             echo "
-                <div class=' ". $class . " ' role='alert'>
+                <div class=' ". $class->value . " ' role='alert'>
                 {$message}
                 </div>
             ";
@@ -22,9 +22,9 @@ class MessageReporting {
     /**
      * registered a message in a session to dispaly to prepare to display it in another page
      */
-    private static function registerFlash(string $name, string $message, string $class  ) {
+    private static function registerFlash(string $name, string $message, MessageType $class  ) {
         $_SESSION[$name] = $message;
-        $_SESSION["{$name}_class"] = $class ;
+        $_SESSION["{$name}_class"] = serialize($class) ;
     }
 
     /**
@@ -34,9 +34,9 @@ class MessageReporting {
     public static function flash(MessagesName $name , string $message = '', MessageType $class = MessageType::SUCCESS  ) {
 
         if(!empty($message)) { // register new flash
-            self::registerFlash($name->value, $message, $class->value);
+            self::registerFlash($name->value, $message, $class);
         } elseif(!empty($_SESSION[$name->value])) { // getFlash message
-            self::alert($_SESSION[$name->value], $_SESSION["{$name->value}_class"]);
+            self::alert($_SESSION[$name->value], unserialize($_SESSION["{$name->value}_class"]));
             self::destroyRegisteredFlash($name->value);
         }
     }
