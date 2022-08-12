@@ -1,7 +1,6 @@
 <?php
 
 use App\Helpers\Enums\MessagesName;
-use App\Helpers\Enums\MessageType;
 use App\Helpers\MessageReporting;
 
  include INC . "/header.php";?>
@@ -30,7 +29,7 @@ use App\Helpers\MessageReporting;
                           <td><?=$category["title"]?></td>
                           <td>
                             <h5>
-                              <a href="/admin/category/update<?= $category["id"] ?>">
+                              <a href="/admin/category/update/<?= $category["id"] ?>">
                                 <i class="fa-solid fa-gear shadow" style="color:green; cursor:pointer"></i>
                               </a>
                               <form action="/admin/category/delete" style="display:inline;"  method="POST">

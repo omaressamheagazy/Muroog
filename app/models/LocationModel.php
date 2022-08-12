@@ -77,9 +77,8 @@ class LocationModel extends Model
     }
 
     public function isLocationTitleExist(string $title): bool {
-        $this->query("SELECT * from location where title=:title LIMIT 1");
+        $this->query("SELECT COUNT(title) as total from location where title=:title LIMIT 1");
         $this->bind(":title", $title);
-        $this->execute();
-        return  $this->rowCount() > 0 ? true : false;
+        return  $this->single()["total"] > 0 ? true : false;
     }
 }

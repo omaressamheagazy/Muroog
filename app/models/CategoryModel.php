@@ -77,9 +77,8 @@ class CategoryModel extends Model
     }
 
     public function isCategoryTitleExist(string $title): bool {
-        $this->query("SELECT * from category where title=:title LIMIT 1");
+        $this->query("SELECT COUNT(title) as total from category where title=:title LIMIT 1");
         $this->bind(":title", $title);
-        $this->execute();
-        return  $this->rowCount() > 0 ? true : false;
+        return  $this->single()["total"] > 0 ? true : false;
     }
 }
