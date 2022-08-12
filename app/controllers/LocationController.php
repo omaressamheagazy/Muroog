@@ -46,7 +46,6 @@ class LocationController extends Controller
             }
         }
         $this->view('/pages/location/addLocationView', $data);  // get request -> to show the add form page
-
     }
     public function update(array $param = null)
     {
@@ -65,18 +64,17 @@ class LocationController extends Controller
             if (call_user_func_array([$model, "update"], [$data["location"]])) { // return true if location succfully updated
                 MessageReporting::flash(MessagesName::LOCATION, "location updated succfully");
                 Self::redirectTo("/admin/location");
-            } else {
+            } else 
                 $data["error"]["duplicate_location"] = "the location that you entered is already exist";
-                $this->view('/pages/location/editLocationView', $data);
-            }
+
         } else { // get request -> retireve the data from the database 
             $location = call_user_func_array([$model, "getLocationById"], [$param["id"]]);
             $data["location"] = [
                     "title" => trim($location["title"]),
                     "id" => $location["id"]
             ];
-            $this->view('/pages/location/editLocationView', $data);
         }
+        $this->view('/pages/location/editLocationView', $data);
     }
 
 

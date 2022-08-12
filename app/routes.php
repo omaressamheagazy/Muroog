@@ -34,7 +34,19 @@ class Routes {
         // Post Routes
         ['POST', '/admin/location/add', 'LocationController#add'],
         ['POST', '/admin/location/delete', 'LocationController#delete'],
-        ['POST', '/admin/location/update', 'LocationController#update']
+        ['POST', '/admin/location/update', 'LocationController#update'],
+
+        /*      Category     */
+
+        // Get Routes
+        ['GET', '/admin/category', 'CategoryController#index'],
+        ['GET', '/admin/category/add', 'CategoryController#add'],
+        ['GET', '/admin/category/update/[i:id]', 'CategoryController#update'],
+
+        // Post Routes
+        ['POST', '/admin/category/add', 'CategoryController#add'],
+        ['POST', '/admin/category/delete', 'CategoryController#delete'],
+        ['POST', '/admin/category/update', 'CategoryController#update']
 
 
 

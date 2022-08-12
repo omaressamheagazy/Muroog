@@ -3,10 +3,12 @@ declare (strict_types = 1);
 namespace App\Controllers;
 
 use App\Helpers\Auth;
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\MessageReporting;
 use App\Libraries\Controller;
 
-require_once "../app/helpers/Auth.php";
-class categoryController extends Controller
+// require_once "../app/helpers/Auth.php";
+class CategoryController extends Controller
 {
 
     public function index()
@@ -16,7 +18,7 @@ class categoryController extends Controller
         }
 
         $data = [
-            "title" => "category",
+            "title" => "Category",
             "category" => [],
         ];
         $model = $this->model(MODELS_NAMESPACE . "CategoryModel");
@@ -27,65 +29,64 @@ class categoryController extends Controller
 
     public function add()
     {
-        if (!Auth::logged_in()) {
-            self::redirectTo("/admin/login");
-        }
-
+        if (!Auth::logged_in()) self::redirectTo("/admin/login");
         $data = [
-            "title" => "Add category",
+            "title" => "Add Category",
             "category" => [],
+            "error" => []
         ];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data["category"] = $_POST;
+            $data["category"] = ["title" => trim($_POST["title"])];
             $model = $this->model(MODELS_NAMESPACE . "CategoryModel");
-            call_user_func_array([$model, "add"], [$data["category"]]);
-            Self::redirectTo("/admin/category");
-
+            if(call_user_func_array([$model, "add"], [$data["category"]])) {
+                MessageReporting::flash(MessagesName::CATEGORY, "category added succfully");
+                Self::redirectTo("/admin/category");
+            } else { // failed to add
+                $data["error"]["duplicate_category"] = "the category that you entered is already exist";
+            }
         }
-        $this->view('/pages/category/addCategoryView', $data);
-
+        $this->view('/pages/category/addCategoryView', $data);  // get request -> to show the add form page
     }
+    public function update(array $param = null)
+    {
+        if (!Auth::logged_in()) self::redirectTo("/admin/login");
+        $data = [
+            "pageTitle" => "update Category",
+            "category" => [],
+            "error" => []
+        ];
+        $model = $this->model(MODELS_NAMESPACE . "CategoryModel");
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data["category"] = [
+                    "title" => trim($_POST["title"]),
+                    "id" => $_POST["id"]
+            ];
+            if (call_user_func_array([$model, "update"], [$data["category"]])) { // return true if category succfully updated
+                MessageReporting::flash(MessagesName::CATEGORY, "category updated succfully");
+                Self::redirectTo("/admin/category");
+            } else 
+                $data["error"]["duplicate_category"] = "the category that you entered is already exist";
+
+        } else { // get request -> retireve the data from the database 
+            $category = call_user_func_array([$model, "getCategoryById"], [$param["id"]]);
+            $data["category"] = [
+                    "title" => trim($category["title"]),
+                    "id" => $category["id"]
+            ];
+        }
+        $this->view('/pages/category/editCategoryView', $data);
+    }
+
 
     public function delete()
     {
-        if (!Auth::logged_in()) {
-            self::redirectTo("/admin/login");
-        }
-
-        $data = [
-            "title" => "Add category",
-            "id" => "",
-        ];
+        if (!Auth::logged_in()) self::redirectTo("/admin/login");
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $model = $this->model(MODELS_NAMESPACE . "CategoryModel");
-            call_user_func_array([$model, "delete"], [$_POST["id"]]);
-            Self::redirectTo("/admin/category");
+            if (call_user_func_array([$model, "delete"], [$_POST["id"]])) {
+                MessageReporting::flash(MessagesName::CATEGORY, "category deleted succfully");
+                Self::redirectTo("/admin/category");
+            }
         }
-    }
-
-    public function update(array $param = null)
-    {
-        if (!Auth::logged_in()) {
-            self::redirectTo("/admin/login");
-        }
-
-        $data = [
-            "title" => "Update category",
-            "id" => "",
-            "category" => [],
-        ];
-        $data["id"] = $param["id"] ?? "";
-        if (!empty($data["id"])) {
-
-            $model = $this->model(MODELS_NAMESPACE . "CategoryModel");
-            $data["category"] = call_user_func_array([$model, "index"], [$data["id"]])[0];
-            $this->view('/pages/category/addCategoryView', $data);
-
-        }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            call_user_func_array([$model, "update"], [$_POST]);
-        }
-
     }
 }
