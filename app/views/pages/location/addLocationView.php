@@ -1,3 +1,10 @@
+<?php
+
+use App\Helpers\Enums\MessageType;
+use App\Helpers\MessageReporting;
+
+
+?>
 <?php include INC . "/header.php";?>
 <?php include INC . "/navbar.php";?>
 <?php include INC . "/sidebar.php";?>
@@ -7,6 +14,7 @@
       <?=$data["title"]?>
     </h1>
     <div class="row">
+      <?php MessageReporting::alertAllMessages($data["error"], MessageType::FAIL)?>
       <form action="/admin/location/add"  method="POST">
         <div class="form-group mb-4">
           <label for="locationInput">Location</label>

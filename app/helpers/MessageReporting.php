@@ -8,7 +8,7 @@ class MessageReporting {
 
     /** a function that resposible for displying alert messages in a div, using bootstap classes
      * @param  string $message  mesage to be displayd to the user --> ex: password is wrong
-     * @param string $messageType type of message -> ex: warrning
+     * @param string $messageType type of message -> ex: warrning,, success
      */
     public static function alert(string $message = "", MessageType $class ): void {
         if(!empty($message)) {
@@ -17,6 +17,14 @@ class MessageReporting {
                 {$message}
                 </div>
             ";
+        }
+    }
+
+    public static function alertAllMessages(array $errorMessages = [], MessageType $class): void {
+        if(!empty($errorMessages)) {
+            $msg = "";
+            foreach ($errorMessages as  $value) $msg .= $value ."<br>";
+            MessageReporting::alert($msg, $class);
         }
     }
     /**

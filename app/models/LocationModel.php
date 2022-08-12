@@ -28,6 +28,7 @@ class LocationModel extends Model
     {
         if (empty($location)) exit();
         try {
+            if($this->isLocationTitleExist($location["title"])) return false; 
             $this->query("INSERT INTO location(title) VALUES(:title)");
             $this->bind(":title", $location["title"]);
             return $this->execute() ? true : false;
@@ -35,7 +36,24 @@ class LocationModel extends Model
             echo $e->getMessage();
         }
     }
-
+    public function update(array $location = null): bool {
+        if(empty($location) ) exit();
+        try {
+            if($this->isLocationTitleExist($location["title"])) return false; 
+            $this->query("UPDATE location set title = :title where id= :id  ");
+            $this->bind("title", $location["title"]);
+            $this->bind("id", $location["id"]);
+            return $this->execute() ? true : false;
+        } catch(\PDOException $e) {
+            echo $e->getMessage();
+            
+        }
+        catch(Exception $e) {
+            echo $e->getMessage();
+            
+        }
+    }
+    
     public  function delete(int $id = null): bool {
         if(empty($id)) exit();
         try {
@@ -50,28 +68,18 @@ class LocationModel extends Model
         }
         
     }
-    public function update(array $location = null): bool {
-        if(empty($location) ) exit();
-        try {
-            // "UPDATE MyGuests SET lastname='Doe' WHERE id=2"
-            $this->query("UPDATE location set title = :title where id= :id  ");
-            $this->bind("title", $location["title"]);
-            $this->bind("id", $location["id"]);
-            return $this->execute() ? true : false;
-        } catch(\PDOException $e) {
-            echo $e->getMessage();
-            
-        }
-        catch(Exception $e) {
-            echo $e->getMessage();
-            
-        }
-    }
 
     public function getLocationById(int $id): array {
 
         $this->query("SELECT * from location where id=:id LIMIT 1");
         $this->bind(":id", $id);
         return $this->single() ?? $this->single() ?? [];
+    }
+
+    public function isLocationTitleExist(string $title): bool {
+        $this->query("SELECT * from location where title=:title LIMIT 1");
+        $this->bind(":title", $title);
+        $this->execute();
+        return  $this->rowCount() > 0 ? true : false;
     }
 }

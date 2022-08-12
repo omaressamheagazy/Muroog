@@ -1,4 +1,9 @@
-<?php include INC . "/header.php";?>
+<?php
+
+use App\Helpers\Enums\MessageType;
+use App\Helpers\MessageReporting;
+
+ include INC . "/header.php";?>
 <?php include INC . "/navbar.php";?>
 <?php include INC . "/sidebar.php";?>
 <section class="order-form my-4 mx-4 d-flex justify-content-center mx-auto  " style=" max-width:60%; ">
@@ -7,11 +12,12 @@
       <?=$data["pageTitle"]?>
     </h1>
     <div class="row">
+      <?php MessageReporting::alertAllMessages($data["error"], MessageType::FAIL) ?>
       <form action="/admin/location/update"  method="POST">
         <div class="form-group mb-4">
           <label for="locationInput">Location</label>
-          <input type="hidden" name="id" value="<?=$data["id"] ?? ""?>">
-          <input type="text" class="form-control" id="locationInput" aria-describedby="emailHelp"placeholder="Enter location" required name="title" value="<?=$data["title"] ?? ""?>">
+          <input type="hidden" name="id" value="<?=$data["location"]["id"] ?? ""?>">
+          <input type="text" class="form-control" id="locationInput" aria-describedby="emailHelp"placeholder="Enter location" required name="title" value="<?=$data["location"]["title"] ?? ""?>">
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
