@@ -1,3 +1,5 @@
+
+// year script
 window.onload = function () {
 let year_satart = 2000;
     let year_end = (new Date).getFullYear(); // current year
