@@ -7,18 +7,10 @@ use Exception;
 
 class LocationModel extends Model
 {
-    public function index($id = null): array
-    {
-
-
+    public  function getAllLocation(): array {
         try {
-            $condition = null;
-            if(!empty($id))
-                $condition = "WHERE id = {$id}";
-            $this->query("SELECT * FROM location $condition");
-            var_dump("wow");
-            $this->execute();
-            return $this->resultSet() ? $this->resultSet() : [];
+            $this->query("SELECT * FROM location");
+            return $this->resultSet() ??  $this->resultSet() ?? [];
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
@@ -69,12 +61,12 @@ class LocationModel extends Model
         
     }
 
-    public function getLocationById(int $id): array {
-
+    public  function getLocationById(int $id): array {
         $this->query("SELECT * from location where id=:id LIMIT 1");
         $this->bind(":id", $id);
         return $this->single() ?? $this->single() ?? [];
     }
+
 
     public function isLocationTitleExist(string $title): bool {
         $this->query("SELECT COUNT(title) as total from location where title=:title LIMIT 1");

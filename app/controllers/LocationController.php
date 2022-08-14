@@ -22,7 +22,7 @@ class LocationController extends Controller
             "location" => [],
         ];
         $model = $this->model(MODELS_NAMESPACE . "LocationModel");
-        $data["location"] = call_user_func_array([$model, "index"], []);
+        $data["location"] = call_user_func_array([$model, "getAllLocation"], []);
         $this->view('/pages/location/allLocationView', $data);
 
     }

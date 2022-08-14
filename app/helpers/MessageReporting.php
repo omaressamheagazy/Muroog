@@ -22,8 +22,7 @@ class MessageReporting {
 
     public static function alertAllMessages(array $errorMessages = [], MessageType $class): void {
         if(!empty($errorMessages)) {
-            $msg = "";
-            foreach ($errorMessages as  $value) $msg .= $value ."<br>";
+            $msg = array_reduce($errorMessages, fn($carry, $item) =>   $carry . $item . "<br>");
             MessageReporting::alert($msg, $class);
         }
     }

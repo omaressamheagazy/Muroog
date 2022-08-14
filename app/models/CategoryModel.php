@@ -7,18 +7,10 @@ use Exception;
 
 class CategoryModel extends Model
 {
-    public function index($id = null): array
-    {
-
-
+    public function getAllCategory() : array {
         try {
-            $condition = null;
-            if(!empty($id))
-                $condition = "WHERE id = {$id}";
-            $this->query("SELECT * FROM category $condition");
-            var_dump("wow");
-            $this->execute();
-            return $this->resultSet() ? $this->resultSet() : [];
+            $this->query("SELECT * FROM category");
+            return $this->resultSet() ??  $this->resultSet() ?? [];
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
@@ -75,6 +67,8 @@ class CategoryModel extends Model
         $this->bind(":id", $id);
         return $this->single() ?? $this->single() ?? [];
     }
+
+
 
     public function isCategoryTitleExist(string $title): bool {
         $this->query("SELECT COUNT(title) as total from category where title=:title LIMIT 1");

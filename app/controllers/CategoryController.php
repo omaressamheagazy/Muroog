@@ -22,7 +22,7 @@ class CategoryController extends Controller
             "category" => [],
         ];
         $model = $this->model(MODELS_NAMESPACE . "CategoryModel");
-        $data["category"] = call_user_func_array([$model, "index"], []);
+        $data["category"] = call_user_func_array([$model, "getAllCategory"], []);
         $this->view('/pages/category/allCategoryView', $data);
 
     }
