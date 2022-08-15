@@ -16,7 +16,6 @@ class LocationController extends Controller
         if (!Auth::logged_in()) {
             self::redirectTo("/admin/login");
         }
-
         $data = [
             "title" => "Location",
             "location" => [],

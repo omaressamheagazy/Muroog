@@ -40,7 +40,7 @@ class ProductController extends \App\Libraries\Controller
             }
             if (!empty($_FILES["file"]["name"])) {
                 $data["file"]= $_FILES["file"];
-                if(File::validateFile($data["file"], "validateImage", $data["errorMsg"] )) {
+                if(File::checkFileError($data["file"], "validateImage", $data["errorMsg"] )) {
                     $fileE = explode(".", $data["file"]["name"]);
                     $fileExtension = strtolower(end($fileE));
                     $data["file"]["name"] = uniqid("product", true) . ".{$fileExtension}";

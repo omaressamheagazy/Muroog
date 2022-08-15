@@ -57,7 +57,11 @@ class Routes {
         /*  =============    
             Building  
          ===========  */
-        ['GET', '/admin/building', 'BuildingController#index']
+
+        // Get routes
+        ['GET', '/admin/building/add', 'BuildingController#add'],
+        // Post routes 
+        ['Post', '/admin/building/add', 'BuildingController#add']
 
 
 

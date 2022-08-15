@@ -16,7 +16,7 @@ abstract class Model
     {
         $this->stmt = $this->dbh->prepare($sql);
     }
-
+    
     // Bind values
     public function bind($param, $value, $type = null)
     {

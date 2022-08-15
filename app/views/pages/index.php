@@ -3,3 +3,4 @@
   <h1><?php echo $data['title']; ?></h1>
   <p>This is the default page</p>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
+
