@@ -59,6 +59,7 @@ class Routes {
          ===========  */
 
         // Get routes
+        ['GET', '/admin/building', 'BuildingController#index'],
         ['GET', '/admin/building/add', 'BuildingController#add'],
         // Post routes 
         ['Post', '/admin/building/add', 'BuildingController#add']

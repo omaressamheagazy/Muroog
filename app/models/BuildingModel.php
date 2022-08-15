@@ -7,8 +7,31 @@ use PDOException;
 
 class BuildingModel extends Model {
 
-    public function index() {
-
+    public function getAllBuilding() : array {
+        try {
+            $this->query("SELECT 
+                                building.id,
+                                building.title,
+                                building.client,
+                                building.area,
+                                building.budget,
+                                building.scope,
+                                location.title as location,
+                                category.title as category,
+                                building.year,
+                                building.description,
+                                building.main_image,
+                                building.latest_project
+                                FROM building
+                                INNER JOIN location
+                                    ON building.location_id=location.id
+                                INNER JOIN category
+                                    ON building.category_id=category.id
+            ");
+            return $this->resultSet() ??  $this->resultSet() ?? [];
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
     }
     public function add(array $building): bool {
 
@@ -32,5 +55,6 @@ class BuildingModel extends Model {
             echo $e->getMessage();
         }
     }   
+
 
 }

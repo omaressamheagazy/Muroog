@@ -10,7 +10,13 @@ class BuildingController extends Controller {
 
     public function index() {
         if(!Auth::logged_in()) Self::redirectTo("/admin/login");
-        $this->view("/pages/building/addBuildingView",[]);
+        $data = [
+            "title" => "Buildings",
+            "building" => [],
+        ];
+        $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
+        $data["building"] = call_user_func_array([$model, "getAllBuilding"], []);
+        $this->view("/pages/building/allBuildingView",$data);
     }
     public function add() {
         if(!Auth::logged_in()) Self::redirectTo("/admin/login");

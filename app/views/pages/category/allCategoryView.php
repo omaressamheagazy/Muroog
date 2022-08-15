@@ -3,7 +3,7 @@
 use App\Helpers\Enums\MessagesName;
 use App\Helpers\MessageReporting;
 
- include INC . "/header.php";?>
+include INC . "/header.php";?>
 <?php include INC . "/navbar.php";?>
 <?php include INC . "/sidebar.php";?>
 <br>
