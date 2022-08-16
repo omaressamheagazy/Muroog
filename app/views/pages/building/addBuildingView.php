@@ -4,11 +4,12 @@
 
 <section class="order-form my-4 mx-4 d-flex justify-content-center" style="margin-left: 100px">
   <div class="container pt-4 addBuilding">
+    
     <div class="row">
       <div class="col-12">
         <h1><?= $data["Pagetitle"]?></h1>
         <hr class="mt-1" />
-      </div>
+      </div>      
       <div class="col-12">
         <form action="/admin/building/add" method="POST" enctype="multipart/form-data">
         <div class="row mx-4">
@@ -112,4 +113,20 @@
     </div>
   </div>
 </section>
+<script>
+  window.onload = function () {
+let year_satart = 2000;
+    let year_end = (new Date).getFullYear(); // current year
+    let year_selected = "Year";
+
+    let option = '';
+    option = '<option>Year</option>'; // first option
+
+    for (let i = year_satart; i <= year_end; i++) {
+        let selected = (i === year_selected ? ' selected' : '');
+        option += '<option value="' + i + '"' + selected + '>' + i + '</option>';
+    }
+    document.getElementById("year").innerHTML = option;
+};
+</script>
 <?php include INC . "/footer.php"?>

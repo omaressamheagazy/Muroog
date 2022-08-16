@@ -40,14 +40,12 @@ charts.forEach(function (chart) {
   });
 });
 
-// $(document).ready(function () {
-//   $(".data-table").each(function (_, table) {
-//     $(table).DataTable();
-//   });
-// });
 $(document).ready(function () {
+  // $(".carousel").carousel();
   $("#dtBasicExample").DataTable({
     paging: true, // false to disable pagination (or any other option)
   });
   $(".dataTables_length").addClass("bs-select");
 });
+
+

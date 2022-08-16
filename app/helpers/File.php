@@ -43,11 +43,14 @@ class File
      * @param string a folder path in whihc where the uploaded image should be stored
      */
     public static function handleValidatedFiles(array $validFiles, string $folderPath): string {
+        $filesName = "";
         foreach($validFiles  as $file) {
-            $fileDest = $folderPath. "/". File::generateUniqueFileName($file["name"]);
+            $fileName = File::generateUniqueFileName($file["name"]);
+            $filesName .= $fileName . " ";
+            $fileDest = $folderPath. "/". $fileName;
             move_uploaded_file($file["tmp_name"], $fileDest);
         }
-        return trim(array_reduce( $validFiles, fn($carry, $item) => "{$carry} {$item['name']}"));
+        return trim($filesName);
     }
     public static function reArrayFiles(&$file_post): array
     {
@@ -69,6 +72,7 @@ class File
         $fileExtension = strtolower(end($extractedFileExt)); // make sure that it's lowercase
         return uniqid() . ".{$fileExtension}";
     }
+    
 
 
 }

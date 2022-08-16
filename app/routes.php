@@ -61,8 +61,14 @@ class Routes {
         // Get routes
         ['GET', '/admin/building', 'BuildingController#index'],
         ['GET', '/admin/building/add', 'BuildingController#add'],
+        ['GET', '/admin/building/update', 'BuildingController#update'],
+        ['GET', '/admin/building/update/[i:id]', 'BuildingController#update'],
+
         // Post routes 
-        ['Post', '/admin/building/add', 'BuildingController#add']
+        ['Post', '/admin/building/add', 'BuildingController#add'],
+        ['POST', '/admin/building/update', 'BuildingController#update'],
+
+
 
 
 

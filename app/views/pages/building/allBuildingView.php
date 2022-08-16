@@ -1,4 +1,9 @@
-<?php include INC . "/header.php";?>
+<?php
+
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\MessageReporting;
+
+ include INC . "/header.php";?>
 <?php include INC . "/navbar.php";?>
 <?php include INC . "/sidebar.php";?>
 <br>
@@ -8,6 +13,7 @@
 <br>
 <div class="row m-5">
   <div class="table-responsive " style="width:80%; margin-left:18%">
+    <?php MessageReporting::flash(MessagesName::Building)?>
                     <table id="dtBasicExample" class="table table-striped table-bordered table-lg table-hover table-condensed" cellspacing="0" width="100%">
                       <thead class="black white-text" >
                         <tr>
@@ -27,7 +33,7 @@
                       <tbody>
                         <?php foreach ($data["building"] as $key => $building): ?>
                         <tr>
-                          <td><?=$key + 1?></td>
+                          <td><img src="<?= UP2 . "/" . $building["main_image"] ?>" alt="" width="200px" height="200px"></td>
                           <td><?=$building["title"]?></td>
                           <td><?=$building["client"]?></td>
                           <td><?=$building["scope"]?></td>
@@ -38,10 +44,10 @@
                           <td><?=$building["latest_project"]?></td>
                           <td>
                             <h5>
-                              <a href="/admin/category/update/<?= $building["id"] ?>">
+                              <a href="/admin/building/update/<?= $building["id"] ?>">
                                 <i class="fa-solid fa-gear shadow" style="color:green; cursor:pointer"></i>
                               </a>
-                              <form action="/admin/bui/$building/delete" style="display:inline;"  method="POST">
+                              <form action="/admin/building/delete" style="display:inline;"  method="POST">
                                 <input type="hidden" name="id" value="<?=$building["id"]?>">
                                 <button type="submit" class="btn btn-danger btn-sm" sty >
                                   <i class="fa-solid fa-trash-can shadow" style="cursor:pointer;"></i>

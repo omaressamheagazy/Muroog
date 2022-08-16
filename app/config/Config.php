@@ -16,6 +16,9 @@
   define("IMG", URLROOT . 'assets/img');
   // js path
   define("JS", URLROOT . 'assets/js');
+
+
+  define("UP2", URLROOT . "uploads");
   // uploads path 
   // define("UPLOADS", "C:\xampp\htdocs\muroog\public\uploads");
   // Site Name

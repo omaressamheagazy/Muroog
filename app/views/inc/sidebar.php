@@ -116,7 +116,7 @@
               <div class="collapse" id="third-layout">
                 <ul class="navbar-nav ps-3">
                   <li>
-                    <a href="/admin/building/all" class="nav-link px-3">
+                    <a href="/admin/building" class="nav-link px-3">
                       <span class="me-2">
 												<i class="bi bi-border-all"></i>
 										</span>
