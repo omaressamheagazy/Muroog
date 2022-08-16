@@ -108,4 +108,17 @@ class BuildingController extends Controller {
             $this->view("/pages/building/editBuildingView", $data);
         }
     }
+
+    public function delete() {
+    {
+        if (!Auth::logged_in()) self::redirectTo("/admin/login");
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
+            if (call_user_func_array([$model, "delete"], [$_POST["id"]])) {
+                MessageReporting::flash(MessagesName::Building, "building deleted succfully");
+                Self::redirectTo("/admin/building");
+            }
+        }
+    }
+    }
 }

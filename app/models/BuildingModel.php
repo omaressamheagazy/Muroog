@@ -93,7 +93,15 @@ class BuildingModel extends Model {
             echo $e->getMessage();
         }
     } 
-
+    public function delete(int $id) {
+        try {
+            $this->query("DELETE FROM building where id={$id} ");
+            return $this->execute() ? true : false;
+        } catch(\PDOException $e) {
+            echo $e->getMessage();
+            
+        }
+    }
     public function getBuildingById(int $id) {
         try {
             $this->query("SELECT 
