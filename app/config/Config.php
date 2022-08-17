@@ -7,7 +7,7 @@
   // var_dump(APPROOT);
   // var_dump(__FILE__);
   // include folder path
-  define('INC', APPROOT . '/views/inc');
+  define('INC', APPROOT . '/views/backend/inc');
   // URL Root
   define('URLROOT', 'http://localhost/');
   // css path
