@@ -14,8 +14,8 @@ class File
     public static function checkFileError(array $uploadedFile,  string $validateType, string &$errorMsg): bool
     {
         $isFileValid = false;
-        if (!self::$validateType($uploadedFile["tmp_name"]))  $errorMsg = "please upload images only";
-        elseif ($uploadedFile["error"]) $errorMsg = "error occured while uploading this file";
+        if ($uploadedFile["error"] != 0) $errorMsg = "error occured while uploading this file";
+        elseif (!self::$validateType($uploadedFile["tmp_name"]))  $errorMsg = "please upload images only";
         elseif ($uploadedFile["size"] > self::FILE_SIZE) $errorMsg = "file is too large";
         else $isFileValid = true;
         return $isFileValid;
@@ -33,7 +33,7 @@ class File
         $errorMsg = "";
         foreach($uploadedFiles as $file) {
             if(empty($file["name"])) continue; // make sure that no empty file is passed
-            if(!self::checkFileError($file, $validateType, $errorMsg)) break; // in case any error found, stope
+            if(!self::checkFileError($file, $validateType, $errorMsg)) break; // in case any error found, stop
         }
         return $errorMsg;
     }

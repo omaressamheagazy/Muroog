@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Helpers\Auth;
 use App\Helpers\Enums\MessagesName;
+use App\Helpers\Enums\MessageType;
 use App\Libraries\Controller;
 use App\Helpers\File;
 use App\Helpers\MessageReporting;
@@ -15,6 +16,7 @@ class BuildingController extends Controller {
         $data = [
             "title" => "Buildings",
             "building" => [],
+            "error" => []
         ];
         $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
         $data["building"] = call_user_func_array([$model, "getAllBuilding"], []);
@@ -89,13 +91,25 @@ class BuildingController extends Controller {
                 } 
                 else $data["error"]["auxiliary_images"] =  $errorMsg;
             }
+            if(!empty($_FILES["main_image"]["name"])) { // main image validation
+                $errorMsg = File::validateFiles($_FILES["main_image"], "validateImage");
+                if(empty($errorMsg) ) $data["main_image"] = File::handleValidatedFiles($_FILES["main_image"], UPLOADS);
+                else $data["error"]["main_image"] =  $errorMsg;
+            }
             
             if (empty($data["error"])) {
+                echo "<pre>";
+                print_r($data["error"]);
+                echo "</pre>";
+                exit();
                 $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
                 if(call_user_func_array([$model, "update"], [$data])) {
                     MessageReporting::flash(MessagesName::Building, "building updated succfully");
                 }
                 Self::redirectTo("/admin/building");
+            } else {
+                MessageReporting::flash(MessagesName::Building, $data["error"],MessageType::FAIL);
+                Self::redirectTo("/admin/building/update/{$data["id"]}");
             }
         } else {
             $building = call_user_func_array([$model, "getBuildingById"], [$param["id"]]);

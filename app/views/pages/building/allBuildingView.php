@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\Enums\MessagesName;
+use App\Helpers\Enums\MessageType;
 use App\Helpers\MessageReporting;
 
  include INC . "/header.php";?>

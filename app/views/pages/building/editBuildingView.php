@@ -1,4 +1,9 @@
-<?php include INC . "/header.php";?>
+<?php
+
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\MessageReporting;
+
+ include INC . "/header.php";?>
 <?php include INC . "/navbar.php";?>
 <?php include INC . "/sidebar.php";?>
 <?php
@@ -7,7 +12,7 @@
 
 <section class="order-form my-4 mx-4 d-flex justify-content-center" style="margin-left: 100px">
   <div class="container pt-4 addBuilding">
-
+    <?php MessageReporting::flash(MessagesName::Building)?>
     <div class="row">
       <div class="col-12">
         <h1><?=$data["Pagetitle"]?></h1>

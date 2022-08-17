@@ -38,15 +38,17 @@ class MessageReporting {
      *  display a flash message based on registered message
      */
 
-    public static function flash(MessagesName $name , string $message = '', MessageType $class = MessageType::SUCCESS  ) {
+    public static function flash(MessagesName $name , string|array $message = null, MessageType $class = MessageType::SUCCESS  ) {
 
         if(!empty($message)) { // register new flash
+            $message = is_array($message) ? array_reduce($message, fn($carry, $item) =>   $carry . $item . "<br>") : $message;
             self::registerFlash($name->value, $message, $class);
         } elseif(!empty($_SESSION[$name->value])) { // getFlash message
             self::alert($_SESSION[$name->value], unserialize($_SESSION["{$name->value}_class"]));
             self::destroyRegisteredFlash($name->value);
         }
     }
+
     private static function destroyRegisteredFlash(string $name) {
             unset($_SESSION[$name]);
             unset($_SESSION["{$name}_class"]);
