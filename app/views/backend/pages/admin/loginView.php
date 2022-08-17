@@ -1,4 +1,4 @@
-<?php require INC . '/header.php';?>
+<?php require INC_BACKEND. '/header.php';?>
 <section class="vh-100">
 	<br>
 	<center>
@@ -17,7 +17,7 @@
   <div class="container py-5 h-100">
     <div class="row d-flex align-items-center justify-content-center h-100">
       <div class="col-md-8 col-lg-7 col-xl-6">
-        <img src= "<?= IMG ?>/b1.jpg"class="img-fluid" alt="Phone image">
+        <img src= "<?=IMG_BACKEND ?>/b1.jpg"class="img-fluid" alt="Phone image">
       </div>
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
         <form action="/admin/login" method="POST">
@@ -48,4 +48,4 @@
     </div>
   </div>
 </section>
-<?php require INC . '/footer.php'?>
+<?php require INC_BACKEND . '/footer.php'?>

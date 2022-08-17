@@ -4,9 +4,9 @@ use App\Helpers\Enums\MessagesName;
 use App\Helpers\Enums\MessageType;
 use App\Helpers\MessageReporting;
 
- include INC . "/header.php";?>
-<?php include INC . "/navbar.php";?>
-<?php include INC . "/sidebar.php";?>
+ include INC_BACKEND . "/header.php";?>
+<?php include INC_BACKEND . "/navbar.php";?>
+<?php include INC_BACKEND . "/sidebar.php";?>
 <br>
 <center>
     <h1><?=$data["title"]?></h1>
@@ -55,5 +55,5 @@ use App\Helpers\MessageReporting;
                 </div>
           </di>
         </div>
-<?php include INC . "/footer.php"?>
+<?php include INC_BACKEND . "/footer.php"?>
 

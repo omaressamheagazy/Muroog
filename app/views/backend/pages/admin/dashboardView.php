@@ -1,6 +1,6 @@
-<?php include INC . "/header.php";?>
-<?php include INC . "/navbar.php";?>
-<?php include INC . "/sidebar.php"?>
+<?php include INC_BACKEND . "/header.php";?>
+<?php include INC_BACKEND . "/navbar.php";?>
+<?php include INC_BACKEND . "/sidebar.php"?>
 
 <main class="mt-5 pt-3">
   <div class="container-fluid">
@@ -94,4 +94,4 @@
 </footer>
 <!-- Footer -->
 
-<?php include INC . "/footer.php"?>
+<?php include INC_BACKEND . "/footer.php"?>

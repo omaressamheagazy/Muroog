@@ -3,9 +3,9 @@
 use App\Helpers\Enums\MessagesName;
 use App\Helpers\MessageReporting;
 
- include INC . "/header.php";?>
-<?php include INC . "/navbar.php";?>
-<?php include INC . "/sidebar.php";?>
+ include INC_BACKEND . "/header.php";?>
+<?php include INC_BACKEND . "/navbar.php";?>
+<?php include INC_BACKEND . "/sidebar.php";?>
 <?php
 
 ?>
@@ -178,4 +178,4 @@ let year_satart = 2000;
     document.getElementById("year").innerHTML = option;
 };
 </script>
-<?php include INC . "/footer.php"?>
+<?php include INC_BACKEND . "/footer.php"?>

@@ -7,15 +7,18 @@
   // var_dump(APPROOT);
   // var_dump(__FILE__);
   // include folder path
-  define('INC', APPROOT . '/views/backend/inc');
+  define('INC_BACKEND', APPROOT . '/views/backend/inc');
+  define('INC_FRONTEND', APPROOT . '/views/frontend/inc');
   // URL Root
   define('URLROOT', 'http://localhost/');
   // css path
-  define("CSS",  URLROOT . 'assets/css');
+  define("CSS_BACKEND",  URLROOT . 'assets/backend/css');
+  define("CSS_FRONTEND",  URLROOT . 'assets/frontend/css');
   // img path
-  define("IMG", URLROOT . 'assets/img');
+  define("IMG_BACKEND", URLROOT . 'assets/backend/img');
+  define("IMG_FRONTEND", URLROOT . 'assets/frontend/img');
   // js path
-  define("JS", URLROOT . 'assets/js');
+  define("JS_BACKEND", URLROOT . 'assets/backend/js');
 
 
   define("UP2", URLROOT . "uploads");

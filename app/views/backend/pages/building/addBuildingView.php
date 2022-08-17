@@ -1,6 +1,6 @@
-<?php include INC . "/header.php";?>
-<?php include INC . "/navbar.php";?>
-<?php include INC . "/sidebar.php";?>
+<?php include INC_BACKEND . "/header.php";?>
+<?php include INC_BACKEND . "/navbar.php";?>
+<?php include INC_BACKEND . "/sidebar.php";?>
 
 <section class="order-form my-4 mx-4 d-flex justify-content-center" style="margin-left: 100px">
   <div class="container pt-4 addBuilding">
@@ -129,4 +129,4 @@ let year_satart = 2000;
     document.getElementById("year").innerHTML = option;
 };
 </script>
-<?php include INC . "/footer.php"?>
+<?php include INC_BACKEND . "/footer.php"?>
