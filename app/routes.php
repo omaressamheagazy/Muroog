@@ -4,18 +4,21 @@ namespace App;
 
 class Routes {
     private static  array $routes = [
-        // Get routes
-        ['GET', '/', 'PagesController#index'],
-        ['GET', '/product', 'ProductController#index'],
-        
-        ['GET', '/product/add', 'ProductController#add'],
-        ['GET', '/product/edit/[i:id]', 'ProductController#edit'],
-        ['GET', '/product/update/[i:id]', 'ProductController#update'],
-        // Post routes
-        ['POST', '/product/delete', 'ProductController#delete'],
-        ['POST', '/product/add', 'ProductController#add'],
-        ['POST', '/product/update', 'ProductController#update'],
+        /*  =============    
+                Pages     
+        ============= */
 
+        // Home page
+        ['GET', '/', 'PagesController#index'],
+        // Project Page
+        ['GET', '/project', 'PagesController#project'],
+        // About page
+        ['GET', '/about', 'PagesController#about'],
+        // Contact Page
+        ['GET', '/contact', 'PagesController#contact'],
+        // Project Detail page
+        ['GET', '/project/[i:id]', 'PagesController#projectDetail'],
+        
         /*  =============    
                 Admin     
             ============= */

@@ -18,7 +18,7 @@ class AdminController extends Controller
         $data = [
             "title" => "admin dashbopoard",
         ];
-        $this->view('pages/admin/dashboardView', $data);
+        $this->view('backend/pages/admin/dashboardView', $data);
     }
     public function login()
     {
@@ -35,6 +35,6 @@ class AdminController extends Controller
             call_user_func_array([$model, "login"], [$data]);
         }
         if (Auth::logged_in()) self::redirectTo("/admin/");
-        $this->view('pages/admin/loginView', $data);
+        $this->view('backend/pages/admin/loginView', $data);
     }
 }

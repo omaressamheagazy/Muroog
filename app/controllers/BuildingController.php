@@ -20,7 +20,7 @@ class BuildingController extends Controller {
         ];
         $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
         $data["building"] = call_user_func_array([$model, "getAllBuilding"], []);
-        $this->view("/pages/building/allBuildingView",$data);
+        $this->view("backend//pages/building/allBuildingView",$data);
     }
 
     public function add() {
@@ -31,7 +31,7 @@ class BuildingController extends Controller {
             $locationModel = $this->model(MODELS_NAMESPACE . "LocationModel");
             $data["location"] = call_user_func([$locationModel, "getAllLocation"]);
             $data["category"] = call_user_func([$categoryModel, "getAllCategory"]);
-            $this->view("/pages/building/addBuildingView", $data);
+            $this->view("backend//pages/building/addBuildingView", $data);
         } else {
             $data = array_map(fn($element) => trim($element), $_POST ); // assign post to data, and make sure that every value is trimmeds
             $data["error"] = [];
@@ -114,7 +114,7 @@ class BuildingController extends Controller {
             $data["location"] = call_user_func([$locationModel, "getAllLocation"]);
             $data["category"] = call_user_func([$categoryModel, "getAllCategory"]);
             $data["building"] = array_map(fn($element) => $element, $building);
-            $this->view("/pages/building/editBuildingView", $data);
+            $this->view("backend//pages/building/editBuildingView", $data);
         }
     }
 

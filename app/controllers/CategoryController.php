@@ -23,7 +23,7 @@ class CategoryController extends Controller
         ];
         $model = $this->model(MODELS_NAMESPACE . "CategoryModel");
         $data["category"] = call_user_func_array([$model, "getAllCategory"], []);
-        $this->view('/pages/category/allCategoryView', $data);
+        $this->view('backend//pages/category/allCategoryView', $data);
 
     }
 
@@ -45,7 +45,7 @@ class CategoryController extends Controller
                 $data["error"]["duplicate_category"] = "the category that you entered is already exist";
             }
         }
-        $this->view('/pages/category/addCategoryView', $data);  // get request -> to show the add form page
+        $this->view('backend//pages/category/addCategoryView', $data);  // get request -> to show the add form page
     }
     public function update(array $param = null)
     {
@@ -74,7 +74,7 @@ class CategoryController extends Controller
                     "id" => $category["id"]
             ];
         }
-        $this->view('/pages/category/editCategoryView', $data);
+        $this->view('backend//pages/category/editCategoryView', $data);
     }
 
 

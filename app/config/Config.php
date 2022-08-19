@@ -19,10 +19,13 @@
   define("IMG_FRONTEND", URLROOT . 'assets/frontend/img');
   // js path
   define("JS_BACKEND", URLROOT . 'assets/backend/js');
+  define("JS_FRONTEND", URLROOT . 'assets/frontend/js');
 
+  // fronted vendor 
+  define("VENDOR", URLROOT . "assets/frontend/vendor");
 
-  define("UP2", URLROOT . "uploads");
   // uploads path 
+  define("UP2", URLROOT . "uploads");
   // define("UPLOADS", "C:\xampp\htdocs\muroog\public\uploads");
   // Site Name
   define('SITENAME', '_YOUR_SITENAME_'); 

@@ -3,7 +3,7 @@ declare (strict_types = 1);
 
 namespace App\Controllers;
 require_once "../app/helpers/File.php";
-use App\Helper\File;
+use App\Helpers\File;
 class ProductController extends \App\Libraries\Controller
 
 {

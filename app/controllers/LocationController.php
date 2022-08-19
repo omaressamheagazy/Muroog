@@ -22,7 +22,7 @@ class LocationController extends Controller
         ];
         $model = $this->model(MODELS_NAMESPACE . "LocationModel");
         $data["location"] = call_user_func_array([$model, "getAllLocation"], []);
-        $this->view('/pages/location/allLocationView', $data);
+        $this->view('backend//pages/location/allLocationView', $data);
 
     }
 
@@ -44,7 +44,7 @@ class LocationController extends Controller
                 $data["error"]["duplicate_location"] = "the location that you entered is already exist";
             }
         }
-        $this->view('/pages/location/addLocationView', $data);  // get request -> to show the add form page
+        $this->view('backend//pages/location/addLocationView', $data);  // get request -> to show the add form page
     }
     public function update(array $param = null)
     {
@@ -73,7 +73,7 @@ class LocationController extends Controller
                     "id" => $location["id"]
             ];
         }
-        $this->view('/pages/location/editLocationView', $data);
+        $this->view('backend//pages/location/editLocationView', $data);
     }
 
 
