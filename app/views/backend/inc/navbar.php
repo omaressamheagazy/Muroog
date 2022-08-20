@@ -52,11 +52,8 @@
                 <i class="bi bi-person-fill"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Edit profile</a></li>
+                <li><a class="dropdown-item" href="/admin/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
               </ul>
             </li>
           </ul>

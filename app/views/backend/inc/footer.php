@@ -1,4 +1,5 @@
-<script src="<?=JS_BACKEND?>/bootstrap.min.js"></script>
+
+
 <script src="<?=JS_BACKEND?>/bootstrap.bundle.min.js"></script>
 <script src="<?=JS_BACKEND?>/carousel.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -8,6 +9,5 @@
 <script src="<?=JS_BACKEND?>/jquery-3.5.1.js"></script>
 <script src="<?=JS_BACKEND?>/jquery.dataTables.min.js"></script>
 <script src="<?=JS_BACKEND?>/dataTables.bootstrap5.min.js"></script>
-
-  </body>
+</body>
 </html>

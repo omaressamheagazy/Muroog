@@ -39,6 +39,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-12">
                                 <div class="footer-box">
                                     <h3 class="title-bar-footer">Quick Links</h3>
+                                    <br>
                                     <ul class="quick-link">
                                         <li>
                                             <a href="#">About Builder</a>
@@ -64,6 +65,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-12">
                                 <div class="footer-box">
                                     <h3 class="title-bar-footer">Information</h3>
+                                    <br>
                                     <ul class="corporate-address">
                                         <li>
                                             <i class="fa fa-map-marker" aria-hidden="true"></i>PO Box 16122 Collins Street West Victoria 8007 Australia</li>

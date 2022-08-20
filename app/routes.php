@@ -25,9 +25,18 @@ class Routes {
 
         // Get routes
         ['GET', '/admin', 'AdminController#index'],
+        ['GET', '/admin/add', 'AdminController#add'],
         ['GET', '/admin/login', 'AdminController#login'],
+        ['GET', '/admin/all', 'AdminController#allAdmin'],
+        ['GET', '/admin/logout', 'AdminController#logout'],
+        ['GET', '/admin/update/[i:id]', 'AdminController#update'],
+
         // Post Routes
         ['POST', '/admin/login', 'AdminController#login'],
+        ['POST', '/admin/add', 'AdminController#add'],
+        ['POST', '/admin/delete', 'AdminController#delete'],
+        ['POST', '/admin/update', 'AdminController#update'],
+        
         
         /* =============    
                 Location  

@@ -114,7 +114,7 @@ class BuildingController extends Controller {
             $data["location"] = call_user_func([$locationModel, "getAllLocation"]);
             $data["category"] = call_user_func([$categoryModel, "getAllCategory"]);
             $data["building"] = array_map(fn($element) => $element, $building);
-            $this->view("backend//pages/building/editBuildingView", $data);
+            $this->view("backend/pages/building/editBuildingView", $data);
         }
     }
 

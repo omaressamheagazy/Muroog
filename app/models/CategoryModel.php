@@ -46,8 +46,7 @@ class CategoryModel extends Model
         }
     }
     
-    public  function delete(int $id = null): bool {
-        if(empty($id)) exit();
+    public  function delete(int $id): bool {
         try {
             $this->query("DELETE FROM category where id={$id} ");
             return $this->execute() ? true : false;

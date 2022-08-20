@@ -1,6 +1,11 @@
-<?php include INC_BACKEND . "/header.php";?>
-<?php include INC_BACKEND . "/navbar.php";?>
-<?php include INC_BACKEND . "/sidebar.php";?>
+<?php
+
+use App\Helpers\Enums\MessageType;
+use App\Helpers\MessageReporting;
+
+ include INC_BACKEND . "/header.php"; ?>
+<?php include INC_BACKEND . "/navbar.php"; ?>
+<?php include INC_BACKEND . "/sidebar.php"; ?>
 
 <section class="order-form my-4 mx-4 d-flex justify-content-center" style="margin-left: 100px">
   <div class="container pt-4 addBuilding">

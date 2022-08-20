@@ -4,14 +4,10 @@ namespace App\Helpers;
 class Auth
 {
 	
-	public static function authenticate($row)
+	public static function authenticate( array $row)
 	{
-		// code...
-		// var_dump("should be autheticated");
-		$_SESSION['USER'] = $row;
-		echo "<br>";
-		// var_dump($_SESSION);
-		echo "<br>";
+		$_SESSION['USER'] = $row["id"];
+		$_SESSION['ROLE'] = $row["role"];
 	}
 
 	public static function logout()
@@ -20,6 +16,7 @@ class Auth
 		if(isset($_SESSION['USER']))
 		{
 			unset($_SESSION['USER']);
+			unset($_SESSION['ROLE']);
 		}
 	}
 
@@ -27,5 +24,9 @@ class Auth
 	{
 		// code...
         return isset($_SESSION['USER'])? true : false;
+	}
+
+	public static function isSuperAdmin(): bool {
+		return $_SESSION["ROLE"] == 2 ? true : false;
 	}
 }
