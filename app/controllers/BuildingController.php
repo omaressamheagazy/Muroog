@@ -123,7 +123,15 @@ class BuildingController extends Controller {
         if (!Auth::logged_in()) self::redirectTo("/admin/login");
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
+            $data = call_user_func_array([$model, 'getBuildingById'], [$_POST["id"]]);
             if (call_user_func_array([$model, "delete"], [$_POST["id"]])) {
+                if(!empty($data["main_image"])) unlink(UPLOADS . '/' . $data["main_image"]); // delete the image from the uploades folder
+                if(!empty($data["auxiliary_images"]))  {
+                        $images = explode(" ", $data["auxiliary_images"]);
+                        foreach($images as $image) {
+                            unlink(UPLOADS . '/' . $image);
+                        }
+                }
                 MessageReporting::flash(MessagesName::Building, "building deleted succfully");
                 Self::redirectTo("/admin/building");
             }

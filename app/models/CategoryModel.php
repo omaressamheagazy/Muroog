@@ -74,4 +74,10 @@ class CategoryModel extends Model
         $this->bind(":title", $title);
         return  $this->single()["total"] > 0 ? true : false;
     }
+
+    public  function numberOfCategory() {
+        $this->query("SELECT COUNT(title) as total from category");
+        return $this->single()["total"];
+    }
+
 }

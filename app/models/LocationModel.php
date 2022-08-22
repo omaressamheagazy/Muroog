@@ -73,4 +73,9 @@ class LocationModel extends Model
         $this->bind(":title", $title);
         return  $this->single()["total"] > 0 ? true : false;
     }
+
+    public  function numberOfLocation() {
+        $this->query("SELECT COUNT(title) as total from location");
+        return $this->single()["total"];
+    }
 }

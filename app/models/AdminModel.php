@@ -111,4 +111,9 @@ class AdminModel extends Model
         $this->bind(":id", $id);
         return $this->single() ?? $this->single() ?? [];
     }
+
+    public  function numberOfAdmin() {
+        $this->query("SELECT COUNT(name) as total from admin");
+        return $this->single()["total"];
+    }
 }

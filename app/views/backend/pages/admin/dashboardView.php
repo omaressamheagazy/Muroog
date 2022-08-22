@@ -27,7 +27,7 @@ use App\Helpers\MessageReporting;
               <i class="bi bi-building text-primary"></i>
             </h1>
             <div>
-              <h2 class="align-middle">4</h2>
+              <h2 class="align-middle"><?= $data["building"] ?></h2>
               <span class="text-muted">Projects</span>
             </div>
           </div>
@@ -41,7 +41,7 @@ use App\Helpers\MessageReporting;
               <i class="bi bi-bag-fill  text-secondary"></i>
             </h1>
             <div>
-              <h2 class="align-middle">5</h2>
+              <h2 class="align-middle"><?= $data["category"] ?></h2>
               <span class="text-muted">Categories</span>
             </div>
           </div>
@@ -55,7 +55,7 @@ use App\Helpers\MessageReporting;
               <i class="bi bi-map-fill text-success"></i>
             </h1>
             <div>
-              <h2 class="align-middle">6</h2>
+              <h2 class="align-middle"><?= $data["location"] ?></h2>
               <span class="text-muted">Locations</span>
             </div>
           </div>
@@ -69,7 +69,7 @@ use App\Helpers\MessageReporting;
               <i class="bi bi-people-fill text-secondary"></i>
             </h1>
             <div>
-              <h2 class="align-middle">3</h2>
+              <h2 class="align-middle"><?= $data["admin"] ?></h2>
               <span class="text-muted">Admins</span>
             </div>
           </div>

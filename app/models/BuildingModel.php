@@ -164,4 +164,9 @@ class BuildingModel extends Model {
         }
     }
 
+    public  function numberOfBuilding() {
+        $this->query("SELECT COUNT(title) as total from building");
+        return $this->single()["total"];
+    }
+
 }

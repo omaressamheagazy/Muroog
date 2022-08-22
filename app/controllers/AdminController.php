@@ -20,6 +20,14 @@ class AdminController extends Controller
         $data = [
             "title" => "admin dashbopoard",
         ];
+        $categoryModel = $this->model(MODELS_NAMESPACE . "categoryModel");
+        $locationModel = $this->model(MODELS_NAMESPACE . "locationModel");
+        $adminModel = $this->model(MODELS_NAMESPACE . "AdminModel");
+        $buildingModel = $this->model(MODELS_NAMESPACE . "buildingModel");
+        $data["category"] = call_user_func([$categoryModel, "numberOfCategory"]);
+        $data["location"] = call_user_func([$locationModel, "numberOfLocation"]);
+        $data["admin"] = call_user_func([$adminModel, "numberOfAdmin"]);
+        $data["building"] = call_user_func([$buildingModel, "numberOfBuilding"]);
         $this->view('backend/pages/admin/dashboardView', $data);
     }
 
