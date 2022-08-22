@@ -33,11 +33,9 @@ class PagesController extends Controller
             'active' => 'project'
         ];  
         $buildingModel = $this->model(MODELS_NAMESPACE . "BuildingModel");
+        if(!call_user_func_array([$buildingModel, "isIdValid"],['building', $param["id"]])) self::redirectTo("/admin");
         $data["building"] = call_user_func_array([$buildingModel, "getBuildingById"], [$param["id"]]);
         $this->view('frontend/pages/projectDetail', $data);
-
-
-
     }
     public function about()
     {

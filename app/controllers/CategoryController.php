@@ -68,6 +68,7 @@ class CategoryController extends Controller
                 $data["error"]["duplicate_category"] = "the category that you entered is already exist";
 
         } else { // get request -> retireve the data from the database 
+            if(!call_user_func_array([$model, "isIdValid"],['category', $param["id"]])) self::redirectTo("/admin");
             $category = call_user_func_array([$model, "getCategoryById"], [$param["id"]]);
             $data["category"] = [
                     "title" => trim($category["title"]),

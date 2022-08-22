@@ -63,4 +63,16 @@ abstract class Model
     {
         return $this->stmt->rowCount();
     }
+
+    public  function isIdValid(string $tableName, int $id): bool {
+        try {
+            $this->query("SELECT COUNT(id) as total from $tableName WHERE id=:id");
+            $this->bind(":id",$id);
+            return $this->single()["total"] > 0;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        } catch(\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }

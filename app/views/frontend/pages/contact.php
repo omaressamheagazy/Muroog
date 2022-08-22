@@ -7,6 +7,7 @@
         <div class="row">
             <div class="col-lg-5 col-md-12 mb-30">
                 <div class="contact-info-area">
+                    <br>
                     <h2 class="section-title-dark text-left title-bar-primary">Company Information</h2>
                     <br>
                     <p>Rimply dummy text of the printing and typesetting industry.Ipsum has been the industry's
@@ -31,6 +32,7 @@
             </div>
             <div class="col-lg-7 col-md-12 mb-30">
                 <div class="contact-form-area">
+                    <br>
                     <h2 class="section-title-dark text-left title-bar-primary">Send Us Message</h2>
                     <br>
                     <form name="contactForm" id="contact_form" method="post" action="email.php">

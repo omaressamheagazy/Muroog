@@ -110,6 +110,7 @@ class AdminController extends Controller
                     $data["error"]["email"] = "The email that you entered is exist";
                 }
         } else {
+            if(!call_user_func_array([$model, "isIdValid"],['admin', $param["id"]]) || $param["id"] == $_SESSION["USER"]) self::redirectTo("/admin");
             $data["admin"] = call_user_func_array([$model, "getAdminById"], [$param["id"]]);
         }
         $this->view('backend/pages/admin/editAdminView', $data);
@@ -134,6 +135,7 @@ class AdminController extends Controller
                     $data["error"]["email"] = "The email that you entered is exist";
                 }
         } else {
+            if(!call_user_func_array([$model, "isIdValid"],['admin', $param["id"]])) self::redirectTo("/admin");
             $data["admin"] = call_user_func_array([$model, "getAdminById"], [$param["id"]]);
         }
         $this->view('backend/pages/admin/editProfileView', $data);

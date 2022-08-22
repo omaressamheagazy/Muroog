@@ -13,6 +13,8 @@ class CategoryModel extends Model
             return $this->resultSet() ??  $this->resultSet() ?? [];
         } catch (\PDOException $e) {
             echo $e->getMessage();
+        } catch(Exception $e) {
+            echo $e->getMessage();
         }
     }
 
@@ -26,6 +28,8 @@ class CategoryModel extends Model
             return $this->execute() ? true : false;
         } catch (\PDOException $e) {
             echo $e->getMessage();
+        } catch(Exception $e) {
+            echo $e->getMessage();
         }
     }
     public function update(array $category = null): bool {
@@ -38,11 +42,8 @@ class CategoryModel extends Model
             return $this->execute() ? true : false;
         } catch(\PDOException $e) {
             echo $e->getMessage();
-            
-        }
-        catch(Exception $e) {
+        } catch(Exception $e) {
             echo $e->getMessage();
-            
         }
     }
     
@@ -52,9 +53,7 @@ class CategoryModel extends Model
             return $this->execute() ? true : false;
         } catch(\PDOException $e) {
             echo $e->getMessage();
-            
-        }
-        catch(Exception $e) {
+        } catch(Exception $e) {
             echo $e->getMessage();
         }
         
@@ -62,22 +61,38 @@ class CategoryModel extends Model
 
     public function getCategoryById(int $id): array {
 
-        $this->query("SELECT * from category where id=:id LIMIT 1");
-        $this->bind(":id", $id);
-        return $this->single() ?? $this->single() ?? [];
+        try {
+            $this->query("SELECT * from category where id=:id LIMIT 1");
+            $this->bind(":id", $id);
+            return $this->single() ?? $this->single() ?? [];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
 
 
     public function isCategoryTitleExist(string $title): bool {
-        $this->query("SELECT COUNT(title) as total from category where title=:title LIMIT 1");
-        $this->bind(":title", $title);
-        return  $this->single()["total"] > 0 ? true : false;
+        try {
+            $this->query("SELECT COUNT(title) as total from category where title=:title LIMIT 1");
+            $this->bind(":title", $title);
+            return  $this->single()["total"] > 0 ? true : false;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public  function numberOfCategory() {
-        $this->query("SELECT COUNT(title) as total from category");
-        return $this->single()["total"];
+        try {
+            $this->query("SELECT COUNT(title) as total from category");
+            return $this->single()["total"];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
+
+    
 
 }

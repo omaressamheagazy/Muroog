@@ -3,6 +3,7 @@ declare(strict_types = 1);
 namespace App\Models;
 
 use App\Libraries\Model;
+use Exception;
 use PDOException;
 
 class BuildingModel extends Model {
@@ -32,6 +33,8 @@ class BuildingModel extends Model {
             return $this->resultSet() ??  $this->resultSet() ?? [];
         } catch (\PDOException $e) {
             echo $e->getMessage();
+        } catch(Exception $e) {
+            echo $e->getMessage();
         }
     }
     public function add(array $building): bool {
@@ -53,6 +56,8 @@ class BuildingModel extends Model {
             $this->bind(":latest_project", $building["latest_project"] ?? null);
             return $this->execute() ? true : false;
         } catch(PDOException $e) {
+            echo $e->getMessage();
+        } catch(Exception $e) {
             echo $e->getMessage();
         }
     }   
@@ -91,7 +96,9 @@ class BuildingModel extends Model {
             return $this->execute() ? true : false;
         } catch(\PDOException $e) {
             echo $e->getMessage();
-        }
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        } 
     } 
     public function delete(int $id) {
         try {
@@ -99,7 +106,8 @@ class BuildingModel extends Model {
             return $this->execute() ? true : false;
         } catch(\PDOException $e) {
             echo $e->getMessage();
-            
+        } catch(Exception $e) {
+            echo $e->getMessage();
         }
     }
     public function getBuildingById(int $id) {
@@ -131,6 +139,8 @@ class BuildingModel extends Model {
             return $this->single() ??  $this->single() ?? [];
         } catch (\PDOException $e) {
             echo $e->getMessage();
+        } catch(Exception $e) {
+            echo $e->getMessage();
         }
     }
     public function getLatestBuilding() {
@@ -161,12 +171,21 @@ class BuildingModel extends Model {
             return $this->resultSet() ?? $this->resultSet() ?? [];
         } catch (\PDOException $e) {
             echo $e->getMessage();
+        } catch(Exception $e) {
+            echo $e->getMessage();
         }
     }
 
     public  function numberOfBuilding() {
-        $this->query("SELECT COUNT(title) as total from building");
-        return $this->single()["total"];
+        try {
+            $this->query("SELECT COUNT(title) as total from building");
+            return $this->single()["total"];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
     }
+
 
 }

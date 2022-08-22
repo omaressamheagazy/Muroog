@@ -107,6 +107,7 @@ class BuildingController extends Controller {
                 Self::redirectTo("/admin/building/update/{$data["id"]}");
             }
         } else {
+            if(!call_user_func_array([$model, "isIdValid"],['building', $param["id"]])) self::redirectTo("/admin");
             $building = call_user_func_array([$model, "getBuildingById"], [$param["id"]]);
             $categoryModel = $this->model(MODELS_NAMESPACE . "CategoryModel");
             $locationModel = $this->model(MODELS_NAMESPACE . "LocationModel");

@@ -67,6 +67,7 @@ class LocationController extends Controller
                 $data["error"]["duplicate_location"] = "the location that you entered is already exist";
 
         } else { // get request -> retireve the data from the database 
+            if(!call_user_func_array([$model, "isIdValid"],['location', $param["id"]])) self::redirectTo("/admin");
             $location = call_user_func_array([$model, "getLocationById"], [$param["id"]]);
             $data["location"] = [
                     "title" => trim($location["title"]),

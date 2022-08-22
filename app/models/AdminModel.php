@@ -101,19 +101,32 @@ class AdminModel extends Model
     }
 
     public function isProvidedEmailSame(string $newEmail, int $adminId): bool {
-        $this->query("SELECT email FROM admin WHERE id=:id");
-        $this->bind(":id", $adminId);
-        $oldEmail = $this->single()["email"];
-        return $newEmail == $oldEmail ? true : false;
+
+        try {
+            $this->query("SELECT email FROM admin WHERE id=:id");
+            $this->bind(":id", $adminId);
+            $oldEmail = $this->single()["email"];
+            return $newEmail == $oldEmail ? true : false;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
     public function getAdminbyId(int $id) : array {
-        $this->query("SELECT * from admin where id=:id LIMIT 1");
-        $this->bind(":id", $id);
-        return $this->single() ?? $this->single() ?? [];
+        try {
+            $this->query("SELECT * from admin where id=:id LIMIT 1");
+            $this->bind(":id", $id);
+            return $this->single() ?? $this->single() ?? [];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public  function numberOfAdmin() {
-        $this->query("SELECT COUNT(name) as total from admin");
-        return $this->single()["total"];
+        try {
+            $this->query("SELECT COUNT(name) as total from admin");
+            return $this->single()["total"];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }

@@ -13,6 +13,8 @@ class LocationModel extends Model
             return $this->resultSet() ??  $this->resultSet() ?? [];
         } catch (\PDOException $e) {
             echo $e->getMessage();
+        } catch(Exception $e) {
+            echo $e->getMessage();
         }
     }
 
@@ -25,6 +27,8 @@ class LocationModel extends Model
             $this->bind(":title", $location["title"]);
             return $this->execute() ? true : false;
         } catch (\PDOException $e) {
+            echo $e->getMessage();
+        } catch(Exception $e) {
             echo $e->getMessage();
         }
     }
@@ -62,20 +66,32 @@ class LocationModel extends Model
     }
 
     public  function getLocationById(int $id): array {
-        $this->query("SELECT * from location where id=:id LIMIT 1");
-        $this->bind(":id", $id);
-        return $this->single() ?? $this->single() ?? [];
+        try {
+            $this->query("SELECT * from location where id=:id LIMIT 1");
+            $this->bind(":id", $id);
+            return $this->single() ?? $this->single() ?? [];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
 
     public function isLocationTitleExist(string $title): bool {
-        $this->query("SELECT COUNT(title) as total from location where title=:title LIMIT 1");
-        $this->bind(":title", $title);
-        return  $this->single()["total"] > 0 ? true : false;
+        try {
+            $this->query("SELECT COUNT(title) as total from location where title=:title LIMIT 1");
+            $this->bind(":title", $title);
+            return  $this->single()["total"] > 0 ? true : false;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public  function numberOfLocation() {
-        $this->query("SELECT COUNT(title) as total from location");
-        return $this->single()["total"];
+        try {
+            $this->query("SELECT COUNT(title) as total from location");
+            return $this->single()["total"];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }
