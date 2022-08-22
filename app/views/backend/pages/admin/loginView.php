@@ -1,25 +1,20 @@
-<?php require INC_BACKEND. '/header.php';?>
-<section class="vh-100">
-	<br>
-	<center>
-    <?php
-    echo "<br>";
-    echo "<pre>";
-    print_r($_SESSION);
-    echo "</pre>";
-    
-    
-    ?>
+<?php
 
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\MessageReporting;
+
+ require INC_BACKEND. '/header.php';?>
+<section class="vh-100">
+	<center>
 		<h1><?= $data["title"] ?></h1>
 	</center>
-
   <div class="container py-5 h-100">
     <div class="row d-flex align-items-center justify-content-center h-100">
       <div class="col-md-8 col-lg-7 col-xl-6">
         <img src= "<?=IMG_BACKEND ?>/b1.jpg"class="img-fluid" alt="Phone image">
       </div>
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <?php MessageReporting::flash(MessagesName::PASSWORD) ?>
         <form action="/admin/login" method="POST">
           <!-- Email input -->
           <div class="form-outline mb-4">
@@ -39,7 +34,7 @@
               <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
               <label class="form-check-label" for="form1Example3"> Remember me </label>
             </div>
-            <a href="#!">Forgot password?</a>
+            <a href="/reset">Forgot password?</a>
           </div>
           <!-- Submit button -->
           <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>

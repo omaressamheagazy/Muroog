@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '789338dbe36d9aa222c0b78fdce72b1ba62b75d0',
         'name' => '__root__',
         'dev' => true,
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '789338dbe36d9aa222c0b78fdce72b1ba62b75d0',
             'dev_requirement' => false,
         ),
         'altorouter/altorouter' => array(
@@ -35,6 +35,15 @@
             'install_path' => __DIR__ . '/../graham-campbell/result-type',
             'aliases' => array(),
             'reference' => 'a878d45c1914464426dc94da61c9e1d36ae262a8',
+            'dev_requirement' => false,
+        ),
+        'phpmailer/phpmailer' => array(
+            'pretty_version' => 'v6.6.3',
+            'version' => '6.6.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpmailer/phpmailer',
+            'aliases' => array(),
+            'reference' => '9400f305a898f194caff5521f64e5dfa926626f3',
             'dev_requirement' => false,
         ),
         'phpoption/phpoption' => array(

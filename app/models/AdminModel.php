@@ -32,7 +32,7 @@ class AdminModel extends Model
     public function add(array $adminDetail): bool
     {
         try {
-            if(!$this->isEmailUnique($adminDetail["email"])) return false;
+            if($this->isEmailExist($adminDetail["email"])) return false;
             $this->query("INSERT INTO admin(name, phone, email, password, role) VALUES(:name, :phone, :email, :password, :role)");
             $this->bind(":name", $adminDetail["name"]);
             $this->bind(":phone", $adminDetail["phone"]);
@@ -75,7 +75,7 @@ class AdminModel extends Model
     {
         try {
             if(!$this->isProvidedEmailSame($adminDetail["email"], +$adminDetail["id"])) { // if the entered email is same as the current email, no need to check if it's unique
-                if(!$this->isEmailUnique($adminDetail["email"])) return false;
+                if($this->isEmailExist($adminDetail["email"])) return false;
             }
             $this->query("UPDATE  admin set name=:name, email=:email, phone=:phone, role=:role WHERE id=:id");
             $this->bind(":name", $adminDetail["name"]);
@@ -89,11 +89,11 @@ class AdminModel extends Model
         }
     }
 
-    public function isEmailUnique(string $email): bool {
+    public function isEmailExist(string $email): bool {
         try {
         $this->query("SELECT COUNT(email) as total from admin where email=:email  LIMIT 1");
         $this->bind(":email", $email);
-        return  $this->single()["total"] > 0 ? false : true;
+        return  $this->single()["total"] > 0 ? true : false;
 
         } catch (\PDOException $e) {
             echo $e->getMessage();

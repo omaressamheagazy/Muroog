@@ -6,12 +6,13 @@ use App\Helpers\MessageReporting;
  include INC_BACKEND . "/header.php"; ?>
 <?php include INC_BACKEND . "/navbar.php"; ?>
 <?php include INC_BACKEND . "/sidebar.php"; ?>
-
+<br>
 <section class="order-form my-4 mx-4 d-flex justify-content-center" style="margin-left: 100px">
     <div class="container pt-4 addBuilding">
 
         <div class="row">
             <div class="col-12">
+                <br>
                 <h1><?= $data["title"] ?></h1>
                 <hr class="mt-1" />
             </div>
@@ -66,5 +67,4 @@ use App\Helpers\MessageReporting;
         </div>
     </div>
 </section>
-<script>
-    <?php include INC_BACKEND . "/footer.php" ?>
+<?php include INC_BACKEND . "/footer.php" ?>

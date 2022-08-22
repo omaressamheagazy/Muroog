@@ -9,6 +9,7 @@ use App\Helpers\MessageReporting;
 <section class="order-form my-4 mx-4 d-flex justify-content-center mx-auto  " style=" max-width:60%; ">
   <div class="container pt-4 " style="margin-top: 100px;">
     <h1>
+      <br>
       <?=$data["pageTitle"]?>
     </h1>
     <div class="row">

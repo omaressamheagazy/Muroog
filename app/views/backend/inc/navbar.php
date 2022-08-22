@@ -52,7 +52,7 @@
                 <i class="bi bi-person-fill"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Edit profile</a></li>
+                <li><a class="dropdown-item" href="/admin/profile/<?= $_SESSION["USER"] ?>"><i class="fa-solid fa-gear"></i> Edit profile</a></li>
                 <li><a class="dropdown-item" href="/admin/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
               </ul>
             </li>

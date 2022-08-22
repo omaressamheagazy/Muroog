@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     
     <link rel="stylesheet" href="<?=CSS_BACKEND ?>/dataTables.bootstrap5.min.css" />
+
     <link rel="stylesheet" href="<?=CSS_BACKEND ?>/style.css" />
     <title><?php echo SITENAME; ?></title>
   </head>

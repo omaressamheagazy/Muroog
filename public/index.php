@@ -1,10 +1,6 @@
 <?php
 require __DIR__ . "/../app/bootstrap.php";
-// load all the registered the routess
-echo "<br>";
-// echo __FILE__;
-// var_dump(APPROOT);
-echo "<br>";
+// load all the registered  routes
 $router = new AltoRouter();
 $router->addRoutes(App\Routes::registeredRoutes());
 
@@ -13,3 +9,4 @@ $db = new App\Libraries\Database($config->getConfig());
 
 // run the program
 (new App\App($db->getPDO(), $router))->run();
+

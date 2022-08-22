@@ -1,4 +1,9 @@
-<?php include INC_BACKEND . "/header.php";?>
+<?php
+
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\MessageReporting;
+
+ include INC_BACKEND . "/header.php";?>
 <?php include INC_BACKEND . "/navbar.php";?>
 <?php include INC_BACKEND . "/sidebar.php"?>
 
@@ -6,6 +11,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
+        <br>
         <h4>Dashboard</h4>
       </div>
     </div>
@@ -13,6 +19,7 @@
           analysis
         -->
     <div class="row">
+      <?php MessageReporting::flash(MessagesName::ADMIN) ?>
       <div class="col-md-3 mb-3 my-5">
         <div class="card bg-light text-dark h-100 shadow border-0">
           <div class="card-body py-5 d-flex justify-content-between text-center align-middle">

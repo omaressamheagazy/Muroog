@@ -7,6 +7,8 @@ include INC_BACKEND . "/header.php";?>
 <?php include INC_BACKEND . "/navbar.php";?>
 <?php include INC_BACKEND . "/sidebar.php";?>
 <br>
+<br>
+<br>
 <center>
     <h1><?=$data["title"]?></h1>
 </center>

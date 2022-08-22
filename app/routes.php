@@ -30,12 +30,28 @@ class Routes {
         ['GET', '/admin/all', 'AdminController#allAdmin'],
         ['GET', '/admin/logout', 'AdminController#logout'],
         ['GET', '/admin/update/[i:id]', 'AdminController#update'],
+        ['GET', '/admin/profile/[i:id]', 'AdminController#editProfile'],
 
         // Post Routes
         ['POST', '/admin/login', 'AdminController#login'],
         ['POST', '/admin/add', 'AdminController#add'],
         ['POST', '/admin/delete', 'AdminController#delete'],
         ['POST', '/admin/update', 'AdminController#update'],
+        ['POST', '/admin/profile', 'AdminController#editProfile'],
+
+        /*  =============    
+                Password     
+            ============= */
+
+        // Get routes
+        ['GET', '/reset', 'PasswordController#index'],
+        ['GET', '/reset/update/[codeId:id]', 'PasswordController#update'],
+        // Post routes
+        ['POST', '/reset', 'PasswordController#add'],
+        ['POST', '/reset/update', 'PasswordController#update'],
+
+
+
         
         
         /* =============    

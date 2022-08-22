@@ -107,6 +107,31 @@ class AdminController extends Controller
         $this->view('backend/pages/admin/editAdminView', $data);
     }
 
+    public function editProfile(array $param = null) {
+        if (!Auth::logged_in())  self::redirectTo("/admin/login");
+
+        $data = [
+            "title" => "edit profile",
+            "error" => []
+        ];
+        $model = $this->model(MODELS_NAMESPACE . "AdminModel");
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data["admin"] = array_map(fn($element) => trim($element), $_POST);
+
+                if(call_user_func_array([$model, "update"], [$data["admin"]])) {
+                    MessageReporting::flash(MessagesName::ADMIN, "profile updated succesfully");
+                    self::redirectTo("/admin");
+                } else {
+                    $data["error"]["email"] = "The email that you entered is exist";
+                }
+        } else {
+            $data["admin"] = call_user_func_array([$model, "getAdminById"], [$param["id"]]);
+        }
+        $this->view('backend/pages/admin/editProfileView', $data);
+    }
+
+
 
 
 

@@ -18,9 +18,11 @@ class App
     {
         static::$pdo = $pdo;
         $this->router = $router;
+
     }
     public function run(): self
     {
+        $this->router->addMatchTypes(array('codeId' => '[^/]++'));
         list($className, $method) = explode("#", $this->router->match()["target"] ?? "#", 2);
         if (class_exists($className = CONTROLLER_NAMESPACE . $className)) {
             // var_dump($this->router->match());

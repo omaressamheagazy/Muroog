@@ -15,6 +15,8 @@ use App\Helpers\MessageReporting;
     <?php MessageReporting::flash(MessagesName::Building)?>
     <div class="row">
       <div class="col-12">
+        <br> 
+        <br>
         <h1><?=$data["Pagetitle"]?></h1>
         <hr class="mt-1" />
       </div>

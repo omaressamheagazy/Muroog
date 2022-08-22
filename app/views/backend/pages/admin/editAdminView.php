@@ -12,6 +12,7 @@ include INC_BACKEND . "/header.php";?>
 
         <div class="row">
             <div class="col-12">
+                <br>
                 <h1><?=$data["title"]?></h1>
                 <hr class="mt-1" />
             </div>
@@ -59,5 +60,4 @@ include INC_BACKEND . "/header.php";?>
         </div>
     </div>
 </section>
-<script>
-    <?php include INC_BACKEND . "/footer.php"?>
+<?php include INC_BACKEND . "/footer.php"?>
