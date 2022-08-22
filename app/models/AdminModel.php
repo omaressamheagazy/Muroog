@@ -17,12 +17,12 @@ class AdminModel extends Model
         }
 
         try {
-            $this->query("SELECT id,email,password, role FROM admin WHERE email=:email AND password=:password LIMIT 1 ");
+            $this->query("SELECT password,id FROM admin WHERE email=:email LIMIT 1 ");
             $this->bind(":email", $userDetail["email"]);
-            $this->bind(":password", \sha1($userDetail["password"]));
             $row = $this->single();
             if ($this->rowCount() > 0) {
-                Auth::authenticate(["id" => $row['id'], "role" => $row["role"]]);
+                if(password_verify($userDetail["password"], $row["password"])) 
+                    Auth::authenticate(["id" => $row['id'], "role" => $row["role"]]);
             }
         } catch (\PDOException $e) {
             echo $e->getMessage();
@@ -37,7 +37,7 @@ class AdminModel extends Model
             $this->bind(":name", $adminDetail["name"]);
             $this->bind(":phone", $adminDetail["phone"]);
             $this->bind(":email", $adminDetail["email"]);
-            $this->bind(":password", \sha1($adminDetail["password"])); // store the password in hashed format
+            $this->bind(":password", password_hash($adminDetail["password"], PASSWORD_DEFAULT)); // store the password in hashed format
             $this->bind(":role", $adminDetail["role"]);
             return $this->execute() ? true : false;
         } catch (\PDOException $e) {
@@ -116,6 +116,16 @@ class AdminModel extends Model
             $this->query("SELECT * from admin where id=:id LIMIT 1");
             $this->bind(":id", $id);
             return $this->single() ?? $this->single() ?? [];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getPassword(int $id) : string {
+        try {
+            $this->query("SELECT password from admin where id=:id LIMIT 1");
+            $this->bind(":id", $id);
+            return $this->single()["password"] ? $this->single()["password"] : [];
         } catch (\Exception $e) {
             echo $e->getMessage();
         }

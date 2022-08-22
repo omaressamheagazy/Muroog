@@ -42,7 +42,7 @@ class PasswordModel extends Model {
         try {
             $email = $this->getEmailByCode($admin["code"]);
             $this->query("UPDATE admin SET password=:password WHERE email=:email");
-            $this->bind(":password", \sha1($admin["password"]));
+            $this->bind(":password", \password_hash($admin["password"], PASSWORD_DEFAULT));
             $this->bind(":email", $email);
             return $this->execute();
         } catch (\Exception $e) {
