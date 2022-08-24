@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Enums\MessagesName;
 use App\Helpers\Enums\MessageType;
 use App\Helpers\MessageReporting;
 
@@ -16,6 +17,8 @@ use App\Helpers\MessageReporting;
     </h1>
     <div class="row">
       <?php MessageReporting::alertAllMessages($data["error"], MessageType::FAIL)?>
+      <?php MessageReporting::flash(MessagesName::ERROR)?>
+
       <form action="/admin/category/add"  method="POST">
         <div class="form-group mb-4">
           <label for="categoryInput">Category</label>

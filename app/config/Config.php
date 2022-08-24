@@ -4,13 +4,12 @@
   namespace App\Config;
   // App Root
   define('APPROOT', dirname(dirname(__FILE__))); // C:\xampp\htdocs\muroog\app"
-  // var_dump(APPROOT);
-  // var_dump(__FILE__);
   // include folder path
   define('INC_BACKEND', APPROOT . '/views/backend/inc');
   define('INC_FRONTEND', APPROOT . '/views/frontend/inc');
   // URL Root
   define('URLROOT', 'http://localhost/');
+  // Log file path
   // css path
   define("CSS_BACKEND",  URLROOT . 'assets/backend/css');
   define("CSS_FRONTEND",  URLROOT . 'assets/frontend/css');

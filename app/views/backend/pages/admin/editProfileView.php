@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Enums\MessagesName;
 use App\Helpers\Enums\MessageType;
 use App\Helpers\MessageReporting;
 
@@ -18,6 +19,7 @@ include INC_BACKEND . "/header.php";?>
             </div>
             <div class="col-12">
         <?php MessageReporting::alertAllMessages($data["error"], MessageType::FAIL)?>
+        <?php MessageReporting::flash(MessagesName::ERROR)?>
 
                 <form action="/admin/profile" method="POST">
                     <div class="row mx-4">

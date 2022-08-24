@@ -1,5 +1,11 @@
 <?php
 namespace App\Controllers;
+
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\Enums\MessageType;
+use App\Helpers\Logger;
+use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
 use App\Libraries\Controller;
 class PagesController extends Controller
 {
@@ -32,10 +38,18 @@ class PagesController extends Controller
             'title' => 'TraversyMVC',
             'active' => 'project'
         ];  
-        $buildingModel = $this->model(MODELS_NAMESPACE . "BuildingModel");
-        if(!call_user_func_array([$buildingModel, "isIdValid"],['building', $param["id"]])) self::redirectTo("/admin");
-        $data["building"] = call_user_func_array([$buildingModel, "getBuildingById"], [$param["id"]]);
-        $this->view('frontend/pages/projectDetail', $data);
+        try {
+
+            $buildingModel = $this->model(MODELS_NAMESPACE . "BuildingModel");
+            if(!call_user_func_array([$buildingModel, "isIdValid"],['building', $param["id"]])) self::redirectTo("/admin");
+            $data["building"] = call_user_func_array([$buildingModel, "getBuildingById"], [$param["id"]]);
+            $this->view('frontend/pages/projectDetail', $data);
+        } catch(\PDOException $e) {
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while loading the project detail, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/all");
+        }
     }
     public function about()
     {

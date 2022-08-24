@@ -4,7 +4,10 @@ namespace App\Controllers;
 
 use App\Helpers\Auth;
 use App\Helpers\Enums\MessagesName;
+use App\Helpers\Enums\MessageType;
+use App\Helpers\Logger;
 use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
 use App\Libraries\Controller;
 
 // require_once "../app/helpers/Auth.php";
@@ -68,12 +71,20 @@ class CategoryController extends Controller
                 $data["error"]["duplicate_category"] = "the category that you entered is already exist";
 
         } else { // get request -> retireve the data from the database 
-            if(!call_user_func_array([$model, "isIdValid"],['category', $param["id"]])) self::redirectTo("/admin");
-            $category = call_user_func_array([$model, "getCategoryById"], [$param["id"]]);
-            $data["category"] = [
-                    "title" => trim($category["title"]),
-                    "id" => $category["id"]
-            ];
+            try {
+
+                if(!call_user_func_array([$model, "isIdValid"],['category', $param["id"]])) self::redirectTo("/admin");
+                $category = call_user_func_array([$model, "getCategoryById"], [$param["id"]]);
+                $data["category"] = [
+                        "title" => trim($category["title"]),
+                        "id" => $category["id"]
+                ];
+            } catch(\PDOException $e) {
+                $error = $e->getMessage();
+                Logger::add($error);
+                MessageReporting::flash(MessagesName::ERROR, "An error happend while updating a new category, please try again", MessageType::FAIL);
+                Redirection::redirectTo("/admin/category");
+            }
         }
         $this->view('backend//pages/category/editCategoryView', $data);
     }

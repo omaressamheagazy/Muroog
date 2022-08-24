@@ -1,0 +1,16 @@
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'frm admin where email='omaressamhegazy6@gmail.com'  LIMIT 1' at line 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'frm admin where email='omaressamhegazy6@gmail.com'  LIMIT 1' at line 1
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'admin WHERE email='omaressamhegazy6@gmail.com' LIMIT 1' at line 1
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'admin WHERE email='omaressamhegazy6@gmail.com' LIMIT 1' at line 1
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'muroog.ctegory' doesn't exist
+

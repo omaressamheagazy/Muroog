@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Enums\MessagesName;
 use App\Helpers\Enums\MessageType;
 use App\Helpers\MessageReporting;
 
@@ -12,6 +13,7 @@ use App\Helpers\MessageReporting;
     
     <div class="row">
       <div class="col-12">
+        <?php MessageReporting::flash(MessagesName::ERROR) ?>
         <h1><?= $data["Pagetitle"]?></h1>
         <hr class="mt-1" />
       </div>      

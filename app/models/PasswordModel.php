@@ -2,6 +2,11 @@
 declare(strict_types = 1);
 namespace App\Models;
 
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\Enums\MessageType;
+use App\Helpers\Logger;
+use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
 use App\Libraries\Model;
 use PDOException;
 
@@ -13,10 +18,11 @@ class PasswordModel extends Model {
             $this->bind(":code", $data["code"]);
             return $this->execute();
         } catch(\PDOException $e) {
-            echo $e->getMessage();
-        } catch(\Exception $e) {
-            echo $e->getMessage();
-        }
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while reseting the password, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/login");
+        } 
     }
 
     public function isCodeExist(string $code) {
@@ -24,8 +30,8 @@ class PasswordModel extends Model {
             $this->query("SELECT COUNT(code) as total from resetpasswords where code=:code LIMIT 1");
             $this->bind(":code", $code);
             return  $this->single()["total"] > 0 ? true : false;
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException $e) {
+            throw new \PDOException();
         }
     }
     public  function getEmailByCode(string $code) {
@@ -33,8 +39,8 @@ class PasswordModel extends Model {
             $this->query("SELECT email FROM resetpasswords WHERE code=:code LIMIT 1");
             $this->bind(":code", $code);
             return $this->single()["email"];
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException $e) {
+            throw new \PDOException();
         }
     }
 
@@ -45,8 +51,11 @@ class PasswordModel extends Model {
             $this->bind(":password", \password_hash($admin["password"], PASSWORD_DEFAULT));
             $this->bind(":email", $email);
             return $this->execute();
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException $e) {
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while updating the passwpr, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/login");
         }
     }
 
@@ -55,8 +64,8 @@ class PasswordModel extends Model {
             $this->query("DELETE FROM resetpasswords WHERE code=:code");
             $this->bind(":code", $code);
             $this->execute();
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException $e) {
+            throw new \PDOException();
         }
     }
 }

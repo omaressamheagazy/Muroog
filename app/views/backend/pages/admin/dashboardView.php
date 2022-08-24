@@ -20,6 +20,7 @@ use App\Helpers\MessageReporting;
         -->
     <div class="row">
       <?php MessageReporting::flash(MessagesName::ADMIN) ?>
+      <?php MessageReporting::flash(MessagesName::ERROR)?>
       <div class="col-md-3 mb-3 my-5">
         <div class="card bg-light text-dark h-100 shadow border-0">
           <div class="card-body py-5 d-flex justify-content-between text-center align-middle">

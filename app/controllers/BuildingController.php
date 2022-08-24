@@ -7,7 +7,9 @@ use App\Helpers\Enums\MessagesName;
 use App\Helpers\Enums\MessageType;
 use App\Libraries\Controller;
 use App\Helpers\File;
+use App\Helpers\Logger;
 use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
 
 class BuildingController extends Controller {
 
@@ -107,35 +109,51 @@ class BuildingController extends Controller {
                 Self::redirectTo("/admin/building/update/{$data["id"]}");
             }
         } else {
-            if(!call_user_func_array([$model, "isIdValid"],['building', $param["id"]])) self::redirectTo("/admin");
-            $building = call_user_func_array([$model, "getBuildingById"], [$param["id"]]);
-            $categoryModel = $this->model(MODELS_NAMESPACE . "CategoryModel");
-            $locationModel = $this->model(MODELS_NAMESPACE . "LocationModel");
-            
-            $data["location"] = call_user_func([$locationModel, "getAllLocation"]);
-            $data["category"] = call_user_func([$categoryModel, "getAllCategory"]);
-            $data["building"] = array_map(fn($element) => $element, $building);
-            $this->view("backend/pages/building/editBuildingView", $data);
+            try {
+
+                if(!call_user_func_array([$model, "isIdValid"],['building', $param["id"]])) self::redirectTo("/admin");
+                $building = call_user_func_array([$model, "getBuildingById"], [$param["id"]]);
+                $categoryModel = $this->model(MODELS_NAMESPACE . "CategoryModel");
+                $locationModel = $this->model(MODELS_NAMESPACE . "LocationModel");
+                
+                $data["location"] = call_user_func([$locationModel, "getAllLocation"]);
+                $data["category"] = call_user_func([$categoryModel, "getAllCategory"]);
+                $data["building"] = array_map(fn($element) => $element, $building);
+                $this->view("backend/pages/building/editBuildingView", $data);
+            } catch(\PDOException $e) {
+                $error = $e->getMessage();
+                Logger::add($error);
+                MessageReporting::flash(MessagesName::ERROR, "An error happend while updating the building, please try again", MessageType::FAIL);
+                Redirection::redirectTo("/admin/building");
+            }
         }
     }
 
     public function delete() {
     {
-        if (!Auth::logged_in()) self::redirectTo("/admin/login");
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
-            $data = call_user_func_array([$model, 'getBuildingById'], [$_POST["id"]]);
-            if (call_user_func_array([$model, "delete"], [$_POST["id"]])) {
-                if(!empty($data["main_image"])) unlink(UPLOADS . '/' . $data["main_image"]); // delete the image from the uploades folder
-                if(!empty($data["auxiliary_images"]))  {
-                        $images = explode(" ", $data["auxiliary_images"]);
-                        foreach($images as $image) {
-                            unlink(UPLOADS . '/' . $image);
-                        }
+        try {
+            
+            if (!Auth::logged_in()) self::redirectTo("/admin/login");
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
+                $data = call_user_func_array([$model, 'getBuildingById'], [$_POST["id"]]);
+                if (call_user_func_array([$model, "delete"], [$_POST["id"]])) {
+                    if(!empty($data["main_image"])) unlink(UPLOADS . '/' . $data["main_image"]); // delete the image from the uploades folder
+                    if(!empty($data["auxiliary_images"]))  {
+                            $images = explode(" ", $data["auxiliary_images"]);
+                            foreach($images as $image) {
+                                unlink(UPLOADS . '/' . $image);
+                            }
+                    }
+                    MessageReporting::flash(MessagesName::Building, "building deleted succfully");
+                    Self::redirectTo("/admin/building");
                 }
-                MessageReporting::flash(MessagesName::Building, "building deleted succfully");
-                Self::redirectTo("/admin/building");
             }
+        } catch(\PDOException $e) {
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while deleting a building, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/building");
         }
     }
     }

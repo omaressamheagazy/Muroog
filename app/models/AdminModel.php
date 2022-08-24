@@ -5,6 +5,11 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Helpers\Auth;
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\Enums\MessageType;
+use App\Helpers\Logger;
+use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
 use App\Libraries\Model;
 
 class AdminModel extends Model
@@ -17,7 +22,7 @@ class AdminModel extends Model
         }
 
         try {
-            $this->query("SELECT password,id FROM admin WHERE email=:email LIMIT 1 ");
+            $this->query("SELECT password,id,role FROM admin WHERE email=:email LIMIT 1 ");
             $this->bind(":email", $userDetail["email"]);
             $row = $this->single();
             if ($this->rowCount() > 0) {
@@ -25,7 +30,10 @@ class AdminModel extends Model
                     Auth::authenticate(["id" => $row['id'], "role" => $row["role"]]);
             }
         } catch (\PDOException $e) {
-            echo $e->getMessage();
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error occured, please try again later", MessageType::FAIL);
+            Redirection::redirectTo("/admin");
         }
     }
 
@@ -41,7 +49,10 @@ class AdminModel extends Model
             $this->bind(":role", $adminDetail["role"]);
             return $this->execute() ? true : false;
         } catch (\PDOException $e) {
-            echo $e->getMessage();
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while adding a new an admin, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/all");
         }
     }
 
@@ -54,7 +65,10 @@ class AdminModel extends Model
             return $this->resultSet() ?? $this->resultSet() ?? [];
 
         } catch (\PDOException $e) {
-            echo $e->getMessage();
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while trying to show all  admins, please try again",  MessageType::FAIL);
+            Redirection::redirectTo("/admin/all");
         }
     }
 
@@ -63,11 +77,12 @@ class AdminModel extends Model
             $this->query("DELETE FROM admin where id={$id} ");
             return $this->execute() ? true : false;
         } catch(\PDOException $e) {
-            echo $e->getMessage();
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while deleting an admin, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/all");
         }
-        catch(\Exception $e) {
-            echo $e->getMessage();
-        }
+
         
     }
 
@@ -77,7 +92,7 @@ class AdminModel extends Model
             if(!$this->isProvidedEmailSame($adminDetail["email"], +$adminDetail["id"])) { // if the entered email is same as the current email, no need to check if it's unique
                 if($this->isEmailExist($adminDetail["email"])) return false;
             }
-            $this->query("UPDATE  admin set name=:name, email=:email, phone=:phone, role=:role WHERE id=:id");
+            $this->query("UPDATE  addmin set name=:name, email=:email, phone=:phone, role=:role WHERE id=:id");
             $this->bind(":name", $adminDetail["name"]);
             $this->bind(":phone", $adminDetail["phone"]);
             $this->bind(":email", $adminDetail["email"]);
@@ -85,8 +100,13 @@ class AdminModel extends Model
             $this->bind(":id", $adminDetail["id"]);
             return $this->execute() ? true : false;
         } catch (\PDOException $e) {
-            echo $e->getMessage();
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while updating an admin, please try again",  MessageType::FAIL);
+            Redirection::redirectTo("/admin/all");
+            
         }
+
     }
 
     public function isEmailExist(string $email): bool {
@@ -96,7 +116,7 @@ class AdminModel extends Model
         return  $this->single()["total"] > 0 ? true : false;
 
         } catch (\PDOException $e) {
-            echo $e->getMessage();
+            throw new \PDOException();
         }
     }
 
@@ -108,7 +128,7 @@ class AdminModel extends Model
             $oldEmail = $this->single()["email"];
             return $newEmail == $oldEmail ? true : false;
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            throw new \PDOException();
         }
     }
     public function getAdminbyId(int $id) : array {
@@ -116,8 +136,8 @@ class AdminModel extends Model
             $this->query("SELECT * from admin where id=:id LIMIT 1");
             $this->bind(":id", $id);
             return $this->single() ?? $this->single() ?? [];
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException $e) {
+            throw new \PDOException();
         }
     }
 
@@ -126,8 +146,8 @@ class AdminModel extends Model
             $this->query("SELECT password from admin where id=:id LIMIT 1");
             $this->bind(":id", $id);
             return $this->single()["password"] ? $this->single()["password"] : [];
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException $e) {
+            throw new \PDOException();
         }
     }
 
@@ -135,8 +155,8 @@ class AdminModel extends Model
         try {
             $this->query("SELECT COUNT(name) as total from admin");
             return $this->single()["total"];
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException $e) {
+            throw new \PDOException();
         }
     }
 }

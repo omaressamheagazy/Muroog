@@ -16,6 +16,8 @@ include INC_BACKEND . "/header.php";?>
 <div class="row m-5">
   <div class="table-responsive " style="width:80%; margin-left:18%">
   <?php MessageReporting::flash(MessagesName::CATEGORY) ?>
+  <?php MessageReporting::flash(MessagesName::ERROR)?>
+
                     <table id="dtBasicExample" class="table table-striped table-bordered table-lg table-hover table-condensed" cellspacing="0" width="100%">
                       <thead class="black white-text" >
                         <tr>

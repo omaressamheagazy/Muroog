@@ -2,6 +2,11 @@
 declare(strict_types = 1);
 namespace App\Models;
 
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\Enums\MessageType;
+use App\Helpers\Logger;
+use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
 use App\Libraries\Model;
 use Exception;
 use PDOException;
@@ -32,10 +37,11 @@ class BuildingModel extends Model {
             ");
             return $this->resultSet() ??  $this->resultSet() ?? [];
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-        } catch(Exception $e) {
-            echo $e->getMessage();
-        }
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend viewing all buildings, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin");
+        } 
     }
     public function add(array $building): bool {
 
@@ -56,10 +62,11 @@ class BuildingModel extends Model {
             $this->bind(":latest_project", $building["latest_project"] ?? null);
             return $this->execute() ? true : false;
         } catch(PDOException $e) {
-            echo $e->getMessage();
-        } catch(Exception $e) {
-            echo $e->getMessage();
-        }
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while adding a new building, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/building");
+        } 
     }   
 
     public function update(array $building): bool {
@@ -95,9 +102,10 @@ class BuildingModel extends Model {
             $this->bind(":id", $building["id"]);
             return $this->execute() ? true : false;
         } catch(\PDOException $e) {
-            echo $e->getMessage();
-        } catch(Exception $e) {
-            echo $e->getMessage();
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while updating a building, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/building");
         } 
     } 
     public function delete(int $id) {
@@ -105,10 +113,11 @@ class BuildingModel extends Model {
             $this->query("DELETE FROM building where id={$id} ");
             return $this->execute() ? true : false;
         } catch(\PDOException $e) {
-            echo $e->getMessage();
-        } catch(Exception $e) {
-            echo $e->getMessage();
-        }
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while deleting a building, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/building");
+        } 
     }
     public function getBuildingById(int $id) {
         try {
@@ -138,10 +147,8 @@ class BuildingModel extends Model {
             $this->bind(":id", $id);
             return $this->single() ??  $this->single() ?? [];
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-        } catch(Exception $e) {
-            echo $e->getMessage();
-        }
+            throw new \PDOException();
+        } 
     }
     public function getLatestBuilding() {
         try {
@@ -170,21 +177,17 @@ class BuildingModel extends Model {
             ");
             return $this->resultSet() ?? $this->resultSet() ?? [];
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-        } catch(Exception $e) {
-            echo $e->getMessage();
-        }
+            throw new \PDOException();
+        } 
     }
 
     public  function numberOfBuilding() {
         try {
             $this->query("SELECT COUNT(title) as total from building");
             return $this->single()["total"];
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        } catch(Exception $e) {
-            echo $e->getMessage();
-        }
+        } catch (\PDOException $e) {
+            throw new \PDOException();
+        } 
     }
 
 

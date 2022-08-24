@@ -6,7 +6,9 @@ namespace App\Controllers;
 use App\Helpers\Auth;
 use App\Helpers\Enums\MessagesName;
 use App\Helpers\Enums\MessageType;
+use App\Helpers\Logger;
 use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
 use App\Libraries\Controller;
 
 // require_once "../app/helpers/Auth.php";
@@ -20,15 +22,22 @@ class AdminController extends Controller
         $data = [
             "title" => "admin dashbopoard",
         ];
-        $categoryModel = $this->model(MODELS_NAMESPACE . "categoryModel");
-        $locationModel = $this->model(MODELS_NAMESPACE . "locationModel");
-        $adminModel = $this->model(MODELS_NAMESPACE . "AdminModel");
-        $buildingModel = $this->model(MODELS_NAMESPACE . "buildingModel");
-        $data["category"] = call_user_func([$categoryModel, "numberOfCategory"]);
-        $data["location"] = call_user_func([$locationModel, "numberOfLocation"]);
-        $data["admin"] = call_user_func([$adminModel, "numberOfAdmin"]);
-        $data["building"] = call_user_func([$buildingModel, "numberOfBuilding"]);
-        $this->view('backend/pages/admin/dashboardView', $data);
+        try {
+            $categoryModel = $this->model(MODELS_NAMESPACE . "categoryModel");
+            $locationModel = $this->model(MODELS_NAMESPACE . "locationModel");
+            $adminModel = $this->model(MODELS_NAMESPACE . "AdminModel");
+            $buildingModel = $this->model(MODELS_NAMESPACE . "buildingModel");
+            $data["category"] = call_user_func([$categoryModel, "numberOfCategory"]);
+            $data["location"] = call_user_func([$locationModel, "numberOfLocation"]);
+            $data["admin"] = call_user_func([$adminModel, "numberOfAdmin"]);
+            $data["building"] = call_user_func([$buildingModel, "numberOfBuilding"]);
+            $this->view('backend/pages/admin/dashboardView', $data);
+        } catch(\PDOException $e) {
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend trying to load the dashboard please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin");
+        }
     }
 
     public function login()

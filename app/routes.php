@@ -95,7 +95,14 @@ class Routes {
         // Post routes 
         ['Post', '/admin/building/add', 'BuildingController#add'],
         ['POST', '/admin/building/update', 'BuildingController#update'],
-        ['POST', '/admin/building/delete', 'BuildingController#delete']
+        ['POST', '/admin/building/delete', 'BuildingController#delete'],
+
+        /*  =============    
+            Building  
+         ===========  */
+        ['GET', '/error', 'ErrorController#index'],
+
+        
 
     ];
         

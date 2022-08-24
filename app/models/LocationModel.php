@@ -2,6 +2,11 @@
 declare (strict_types = 1);
 namespace App\Models;
 
+use App\Helpers\Enums\MessagesName;
+use App\Helpers\Enums\MessageType;
+use App\Helpers\Logger;
+use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
 use App\Libraries\Model;
 use Exception;
 
@@ -12,10 +17,11 @@ class LocationModel extends Model
             $this->query("SELECT * FROM location");
             return $this->resultSet() ??  $this->resultSet() ?? [];
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-        } catch(Exception $e) {
-            echo $e->getMessage();
-        }
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while loading all locations, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin");
+        } 
     }
 
     public function add(array $location = null): bool
@@ -27,10 +33,11 @@ class LocationModel extends Model
             $this->bind(":title", $location["title"]);
             return $this->execute() ? true : false;
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-        } catch(Exception $e) {
-            echo $e->getMessage();
-        }
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while adding a new location, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/location/add");
+        } 
     }
     public function update(array $location = null): bool {
         if(empty($location) ) exit();
@@ -41,13 +48,13 @@ class LocationModel extends Model
             $this->bind("id", $location["id"]);
             return $this->execute() ? true : false;
         } catch(\PDOException $e) {
-            echo $e->getMessage();
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while updating the location, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/location");
             
         }
-        catch(Exception $e) {
-            echo $e->getMessage();
-            
-        }
+
     }
     
     public  function delete(int $id = null): bool {
@@ -56,22 +63,23 @@ class LocationModel extends Model
             $this->query("DELETE FROM location where id={$id} ");
             return $this->execute() ? true : false;
         } catch(\PDOException $e) {
-            echo $e->getMessage();
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend while deleting the location, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin/location");
             
         }
-        catch(Exception $e) {
-            echo $e->getMessage();
-        }
-        
+
     }
 
     public  function getLocationById(int $id): array {
+        
         try {
             $this->query("SELECT * from location where id=:id LIMIT 1");
             $this->bind(":id", $id);
             return $this->single() ?? $this->single() ?? [];
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException ) {
+            throw new \PDOException();
         }
     }
 
@@ -81,8 +89,8 @@ class LocationModel extends Model
             $this->query("SELECT COUNT(title) as total from location where title=:title LIMIT 1");
             $this->bind(":title", $title);
             return  $this->single()["total"] > 0 ? true : false;
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException ) {
+            throw new \PDOException();
         }
     }
 
@@ -90,8 +98,8 @@ class LocationModel extends Model
         try {
             $this->query("SELECT COUNT(title) as total from location");
             return $this->single()["total"];
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+        } catch (\PDOException ) {
+            throw new \PDOException();
         }
     }
 }

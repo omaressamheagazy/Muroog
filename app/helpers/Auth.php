@@ -6,6 +6,7 @@ class Auth
 	
 	public static function authenticate( array $row)
 	{
+		\session_regenerate_id();
 		$_SESSION['USER'] = $row["id"];
 		$_SESSION['ROLE'] = $row["role"];
 	}

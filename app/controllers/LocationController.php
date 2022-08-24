@@ -4,7 +4,10 @@ namespace App\Controllers;
 
 use App\Helpers\Auth;
 use App\Helpers\Enums\MessagesName;
+use App\Helpers\Enums\MessageType;
+use App\Helpers\Logger;
 use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
 use App\Libraries\Controller;
 
 // require_once "../app/helpers/Auth.php";
@@ -67,12 +70,20 @@ class LocationController extends Controller
                 $data["error"]["duplicate_location"] = "the location that you entered is already exist";
 
         } else { // get request -> retireve the data from the database 
-            if(!call_user_func_array([$model, "isIdValid"],['location', $param["id"]])) self::redirectTo("/admin");
-            $location = call_user_func_array([$model, "getLocationById"], [$param["id"]]);
-            $data["location"] = [
-                    "title" => trim($location["title"]),
-                    "id" => $location["id"]
-            ];
+            try {
+
+                if(!call_user_func_array([$model, "isIdValid"],['location', $param["id"]])) self::redirectTo("/admin");
+                $location = call_user_func_array([$model, "getLocationById"], [$param["id"]]);
+                $data["location"] = [
+                        "title" => trim($location["title"]),
+                        "id" => $location["id"]
+                ];
+            } catch(\PDOException $e) {
+                $error = $e->getMessage();
+                Logger::add($error);
+                MessageReporting::flash(MessagesName::ERROR, "An error happend while updating the location, please try again", MessageType::FAIL);
+                Redirection::redirectTo("/admin/location");
+            }
         }
         $this->view('backend//pages/location/editLocationView', $data);
     }

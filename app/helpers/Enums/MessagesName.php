@@ -7,4 +7,5 @@ enum MessagesName : string {
     case Building = "building_message";
     case ADMIN = "admin_message";
     case PASSWORD = "password_message";
+    case ERROR = "error_message";
 }

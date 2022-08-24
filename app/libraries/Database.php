@@ -9,6 +9,10 @@
 
 declare(strict_types = 1);
 namespace App\Libraries;
+
+use App\Helpers\MessageReporting;
+use App\Helpers\Redirection;
+use Exception;
 use PDO;
   class Database {
     private array $config;
@@ -28,9 +32,14 @@ use PDO;
       // Create PDO instance
       try{
         $this->dbh = new PDO($dsn, $this->config["user"], $this->config["password"], $options);
+        if(empty($this->dbh)) throw new Exception("errro happend");
       } catch(\PDOException $e){
-        $this->error = $e->getMessage();
-        echo $this->error;
+        MessageReporting::dialogMessage("An error happend, while connecting to the server, please try again later");
+        header("Location:index.php");
+        exit();
+      } catch(\Exception $e) {
+        MessageReporting::dialogMessage("An error happend, while connecting to the server, please try again later");
+        exit();
       }
     }
     

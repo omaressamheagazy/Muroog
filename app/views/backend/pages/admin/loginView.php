@@ -15,6 +15,7 @@ use App\Helpers\MessageReporting;
       </div>
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
         <?php MessageReporting::flash(MessagesName::PASSWORD) ?>
+        <?php MessageReporting::flash(MessagesName::ERROR)?>
         <form action="/admin/login" method="POST">
           <!-- Email input -->
           <div class="form-outline mb-4">
