@@ -36,11 +36,8 @@ class BuildingModel extends Model {
                                     ON building.category_id=category.id
             ");
             return $this->resultSet() ??  $this->resultSet() ?? [];
-        } catch (\PDOException $e) {
-            $error = $e->getMessage();
-            Logger::add($error);
-            MessageReporting::flash(MessagesName::ERROR, "An error happend viewing all buildings, please try again", MessageType::FAIL);
-            Redirection::redirectTo("/admin");
+        } catch (\PDOException) {
+            throw new \PDOException();
         } 
     }
     public function add(array $building): bool {
@@ -173,9 +170,9 @@ class BuildingModel extends Model {
                                     ON building.location_id=location.id
                                 INNER JOIN category
                                     ON building.category_id=category.id
-                                WHERE building.latest_project !== null
+                                WHERE building.latest_project = 'on'
             ");
-            return $this->resultSet() ?? $this->resultSet() ?? [];
+            return $this->resultSet() ??  $this->resultSet() ?? [];
         } catch (\PDOException $e) {
             throw new \PDOException();
         } 

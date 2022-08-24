@@ -15,7 +15,7 @@ use App\Libraries\Model;
 class AdminModel extends Model
 {
 
-    public function login(array $userDetail)
+    public function login(array $userDetail): bool
     {
         if ((empty($userDetail))) {
             exit();
@@ -26,9 +26,12 @@ class AdminModel extends Model
             $this->bind(":email", $userDetail["email"]);
             $row = $this->single();
             if ($this->rowCount() > 0) {
-                if(password_verify($userDetail["password"], $row["password"])) 
+                if(password_verify($userDetail["password"], $row["password"])) {
                     Auth::authenticate(["id" => $row['id'], "role" => $row["role"]]);
+                    return true;
+                }
             }
+            return false;
         } catch (\PDOException $e) {
             $error = $e->getMessage();
             Logger::add($error);

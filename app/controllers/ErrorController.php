@@ -6,7 +6,7 @@ use App\Libraries\Controller;
 
 class ErrorController extends Controller {
     public function index() {
-        $this->view('errors/unexceptedErrorView', []);
+        $this->view('errors/404', []);
     }
 }
 

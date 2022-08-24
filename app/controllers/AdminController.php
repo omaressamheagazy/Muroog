@@ -52,7 +52,8 @@ class AdminController extends Controller
             $data["email"] = $_POST["email"];
             $data["password"] = $_POST["password"];
             $model = $this->model(MODELS_NAMESPACE . "AdminModel");
-            call_user_func_array([$model, "login"], [$data]);
+            if(!call_user_func_array([$model, "login"], [$data])) 
+                MessageReporting::flash(MessagesName::ERROR, "The email or password is incorrect", MessageType::FAIL);
         }
         if (Auth::logged_in()) self::redirectTo("/admin/");
         $this->view('backend/pages/admin/loginView', $data);

@@ -10,6 +10,7 @@ class Routes {
 
         // Home page
         ['GET', '/', 'PagesController#index'],
+        ['GET', '', 'PagesController#index'],
         // Project Page
         ['GET', '/project', 'PagesController#project'],
         // About page
@@ -98,9 +99,9 @@ class Routes {
         ['POST', '/admin/building/delete', 'BuildingController#delete'],
 
         /*  =============    
-            Building  
+            Error  
          ===========  */
-        ['GET', '/error', 'ErrorController#index'],
+        ['GET', '/error/404', 'ErrorController#index'],
 
         
 

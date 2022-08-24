@@ -13,6 +13,8 @@ use App\Helpers\MessageReporting;
 <section class="order-form my-4 mx-4 d-flex justify-content-center" style="margin-left: 100px">
   <div class="container pt-4 addBuilding">
     <?php MessageReporting::flash(MessagesName::Building)?>
+    <?php MessageReporting::flash(MessagesName::ERROR)?>
+
     <div class="row">
       <div class="col-12">
         <br> 

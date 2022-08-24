@@ -19,7 +19,7 @@ use App\Helpers\MessageReporting;
             </div>
             <div class="col-12">
         <?php MessageReporting::alertAllMessages($data["error"], MessageType::FAIL)?>
-        <?php MessageReporting::flash(MessagesName::ERROR, class:MessageType::FAIL) ?>
+        <?php MessageReporting::flash(MessagesName::ERROR) ?>
                 <form action="/admin/add" method="POST">
                     <div class="row mx-4">
                         <div class="col-12 mb-2">

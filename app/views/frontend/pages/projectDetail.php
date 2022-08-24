@@ -9,6 +9,7 @@
                 <div class="preview col-md-6">
 
                     <div >
+                        <br>
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                             <?php
                             $images = explode(" ", $data["building"]["auxiliary_images"]);
@@ -43,6 +44,7 @@
 
                 </div>
                 <div class="details col-md-6">
+                    <br>
                     <h3 class="product-title">Project Description</h3>
                     <br>
                     <p class="product-description"><?= $data["building"]["description"] ?>.</p>

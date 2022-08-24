@@ -14,15 +14,24 @@ use App\Helpers\Redirection;
 class BuildingController extends Controller {
 
     public function index() {
-        if(!Auth::logged_in()) Self::redirectTo("/admin/login");
-        $data = [
-            "title" => "Buildings",
-            "building" => [],
-            "error" => []
-        ];
-        $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
-        $data["building"] = call_user_func_array([$model, "getAllBuilding"], []);
-        $this->view("backend//pages/building/allBuildingView",$data);
+        try {
+
+            if(!Auth::logged_in()) Self::redirectTo("/admin/login");
+            $data = [
+                "title" => "Buildings",
+                "building" => [],
+                "error" => []
+            ];
+            $model = $this->model(MODELS_NAMESPACE . "BuildingModel");
+            $data["building"] = call_user_func_array([$model, "getAllBuilding"], []);
+            $this->view("backend//pages/building/allBuildingView",$data);
+        }
+        catch (\PDOException $e) {
+            $error = $e->getMessage();
+            Logger::add($error);
+            MessageReporting::flash(MessagesName::ERROR, "An error happend viewing all buildings, please try again", MessageType::FAIL);
+            Redirection::redirectTo("/admin");
+        } 
     }
 
     public function add() {

@@ -10,7 +10,7 @@ class App
 {
     private static \PDO $pdo;
     private \AltoRouter $router;
-    private string $currentController = CONTROLLER_NAMESPACE . "PagesController";
+    private string $currentController = CONTROLLER_NAMESPACE . "ErrorController";
     private string $currentMethod = "index";
     private array $params = [];
 
@@ -24,13 +24,12 @@ class App
     {
         $this->router->addMatchTypes(array('codeId' => '[^/]++'));
         list($className, $method) = explode("#", $this->router->match()["target"] ?? "#", 2);
-        if (class_exists($className = CONTROLLER_NAMESPACE . $className)) {
-            // var_dump($this->router->match());
-            if (method_exists($className, $method)) {
+        if (class_exists($className = CONTROLLER_NAMESPACE . $className)) { // controller exst
+            if (method_exists($className, $method)) { // action exist
                 $this->currentController = $className;
                 $this->currentMethod = $method;
                 $this->params = $this->router->match()["params"];
-            }
+            } 
         } 
         call_user_func_array([new $this->currentController, $this->currentMethod], [$this->params]);
         return $this;
