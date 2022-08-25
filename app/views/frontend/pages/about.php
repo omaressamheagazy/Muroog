@@ -8,11 +8,9 @@
                 <div class="about-layout1">
                     <h2 class="section-title-dark text-left title-bar-primary">Who we are</h2>
                     <br>
-                    <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit nisi a dictum tristique.
-                        Nullam urna metus, vestibulum ac sodales eSed ut perspiciatis unde omnis iste natus error
-                        sit voluptatem accusantium doloremque laudantium totam remrutrumDorem ipsum dolor sit
-                        amet, consectetur adipiscing elit. Sed ut perspiciatis.Dorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Ut blandit nisi a dictum tristique.</p>
+                    <p>
+                        Muroog Engineering Consultancy was established in the Oman in 1998
+                    </p>
                     <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit nisi a dictum tristique.
                         Nullam urna metus, vestibulum ac sodales eSed ut perspiciatis unde omnis iste natus error
                         sit voluptatem accusantium doloremque laudantium totam remrutrumDorem ipsum dolor sit

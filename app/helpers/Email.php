@@ -15,7 +15,7 @@ class Email
 
     }
 
-    public  function sendEmail(array $serverSetting, array $recipients, array $content)
+    public  function sendEmail(array $serverSetting, array $recipients, array $content, bool $isHTML = true)
     {
         $mail = new PHPMailer(true);
         try {
@@ -24,7 +24,7 @@ class Email
             //Recipients
             $this->setRecipients($recipients);
             //Content
-            $this->setContent($content);
+            $this->setContent($content, $isHTML);
             $this->mail->send();
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -47,14 +47,13 @@ class Email
         $this->mail->setFrom($recipients["fromEmail"], $recipients["fromName"]);
         $this->mail->addAddress($recipients["recipientEmail"], $recipients["recipientName"] ); //Add a recipient
         $this->mail->addAddress($recipients["recipientEmail"]); //Name is optional
-        $this->mail->addReplyTo('no-reply@gmail.com', 'No reply');
     }
 
-    private function setContent(array $content) {
-        $this->mail->isHTML(true); //Set email format to HTML
+    private function setContent(array $content, bool $isHTML ) {
+        $this->mail->isHTML(false); //Set email format to HTML
         $this->mail->Subject = $content["subject"];
-        $this->mail->Body = $content["body"];
-        $this->mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $this->mail->Body = $content["body"] ?? ' ';
+        $this->mail->AltBody = $content["alt-body"] ?? '';
     }
 
 }

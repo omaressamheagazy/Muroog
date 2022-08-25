@@ -17,8 +17,12 @@ class Routes {
         ['GET', '/about', 'PagesController#about'],
         // Contact Page
         ['GET', '/contact', 'PagesController#contact'],
+        ['POST', '/contact', 'PagesController#contact'],
         // Project Detail page
         ['GET', '/project/[i:id]', 'PagesController#projectDetail'],
+        // Service Pgae
+        ['GET', '/service', 'PagesController#service'],
+        
         
         /*  =============    
                 Admin     

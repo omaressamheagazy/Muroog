@@ -14,7 +14,7 @@
                     <p class="slider-sub-text">Dorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teididunt ut labore
                         et orem ipsum dolor sit ameo eiusmod tm do eiusmod teididunt ut labore et dolore.</p>
                     <div class="slider-btn-area">
-                        <a href="contact.html" class="fill-btn">Contact Us</a>
+                        <a href="/contact" class="fill-btn">Contact Us</a>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     <p class="slider-sub-text">Dorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teididunt ut labore
                         et orem ipsum dolor sit ameo eiusmod tm do eiusmod teididunt ut labore et dolore.</p>
                     <div class="slider-btn-area">
-                        <a href="contact.html" class="fill-btn">Contact Us</a>
+                        <a href="/contact" class="fill-btn">Contact Us</a>
                     </div>
                 </div>
             </div>
@@ -36,183 +36,76 @@
 <!-- Slider Area End Here -->
 
 <!-- Service Area Start Here -->
-<section class="section-space-less30 bg-light">
+<!-- Service Area Start Here -->
+<section class="section-space-default-less30 bg-light">
     <div class="container">
+        <h2 class="section-title-dark">Our serivces</h2>
+        <br>
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <div class="inner-md-title-dark mb-50">
-                    <h2>We Provide Creative Design &amp; Roofing Proper Rule.</h2>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay=".2s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">
-                                Residential Roofing</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="service-layout4">
+                    <div class="item-img">
+                        <a href="#">
+                            <img src="<?= IMG_FRONTEND ?>/service/service1.jpg" alt="service" style="height:250px; width:fit">
+                        </a>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay=".4s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-water-valve icon-circle-primary"></i>
-                    <div class="media-body">
+                    <div class="item-content">
                         <h3 class="service-title-dark">
-                            <a href="#">Industrial Roofing</a>
+                            <a href="single-service.html">Design</a>
                         </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay=".6s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">
-                                Commercial Roofing</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay=".8s">
-                <div class="service-layout1 media">
-
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">Damage Roof Repair</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="1s">
-                <div class="service-layout1 media">
-
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">Gutters</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="1.2s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">
-                                Siding</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="1.2s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">Single Ply Roofing</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
+                        <p>Simply dummy text of the printing and type setting industry arorem Ipsum has dummy standard
+                            ipsum.
+                        </p>
                     </div>
                 </div>
             </div>
 
 
 
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="1.2s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="service-layout4">
+                    <div class="item-img">
+                        <a href="#">
+                            <img src="<?= IMG_FRONTEND ?>/service/s1.jpg" alt="service" style="height:250px; width:fit">
+                        </a>
+                    </div>
+                    <div class="item-content">
                         <h3 class="service-title-dark">
-                            <a href="#">Modified Roofing</a>
+                            <a href="single-service.html">Supervision</a>
                         </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
+                        <p>Simply dummy text of the printing and type setting industry arorem Ipsum has dummy standard
+                            ipsum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="service-layout4">
+                    <div class="item-img">
+                        <a href="#">
+                            <img src="<?= IMG_FRONTEND ?>/service/int2.jpg" alt="service" style="height:250px; width:fit">
+                        </a>
+                    </div>
+                    <div class="item-content">
+                        <h3 class="service-title-dark">
+                            <a href="single-service.html">interior design</a>
+                        </h3>
+                        <p>Simply dummy text of the printing and type setting industry arorem Ipsum has dummy standard
+                            ipsum.
+                        </p>
                     </div>
                 </div>
             </div>
 
 
 
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="1.2s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-people icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">Built-Up Roofing</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
-                    </div>
-                </div>
-            </div>
 
-
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="1.2s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">Metal Roofing</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="1.2s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">Vegetative Roofing</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="2s" data-wow-delay="1.2s">
-                <div class="service-layout1 media">
-                    <i class="flaticon-house icon-circle-primary"></i>
-                    <div class="media-body">
-                        <h3 class="service-title-dark">
-                            <a href="#">Specialty Metal</a>
-                        </h3>
-                        <p>Hmply dummy text of the printingdeeiy aere tysetting industrorem Ipsdustry's standard
-                            dummy tsinpe bled.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+    </div>
 </section>
+<!-- Service Area End Here -->
 <!-- Service Area End Here -->
 <!-- Video Area Start Here -->
 <section class="section-space-default-less30 bg-accent">
@@ -224,7 +117,7 @@
                     <p>Rimply dummy text of the printing and typesetting istrykorem Ipsum hasbeen standar daand
                         scrambled.make a type specimen book. Lorem ipsum dolor sit amet, conset uer adipiscing
                         elit, sed diam nonummy nibh euismod tincidunt.</p>
-                    <a href="#" class="fill-btn mt-30">Take A Tour</a>
+                    <a href="/project" class="fill-btn mt-30">Take A Tour</a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-30 wow fadeInRight" data-wow-duration="2s" data-wow-delay=".2s">
@@ -251,7 +144,7 @@
                     <p>Rimply dummy text of the printing and typesetting istrykorem Ipsum hasbeen standar daand
                         scrambled.make a type specimen book. Lorem ipsum dolor sit amet, conset uer adipiscing
                         elit, sed diam nonummy nibh euismod tincidunt.</p>
-                    <a href="#" class="fill-btn mt-30">Take A Tour</a>
+                    <a href="/project" class="fill-btn mt-30">Take A Tour</a>
                 </div>
             </div>
 
@@ -269,7 +162,7 @@
                     <h2 class="section-lg-title-light">We Have Expert Engineer</h2>
                     <p class="lead banner-para-light">Rimply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
                         standard dummy text ever since printer took a galley.</p>
-                    <a href="contact.html" class="fill-btn">Contact Us</a>
+                    <a href="/contact" class="fill-btn">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -286,13 +179,13 @@
         <div class="row no-gutters zoom-gallery">
 
             <?php foreach ($data["building"] as $building) : ?>
-                <?php if(!empty($building["main_image"])): ?>
+                <?php if (!empty($building["main_image"])) : ?>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="project-layout2">
                             <img src="<?= UP2 . "/" . $building["main_image"] ?>" class="img-fluid" alt="project" height="200px">
                             <div class="item-content">
                                 <h3 class="project-title-light">
-                                    <a href="/project/<?= $building["id"]?>"><?= $building["title"] ?></a>
+                                    <a href="/project/<?= $building["id"] ?>"><?= $building["title"] ?></a>
                                 </h3>
                                 <div class="project-sub-title-light"><?= $building['category'] ?></div>
                             </div>
